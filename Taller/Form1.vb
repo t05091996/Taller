@@ -9,7 +9,6 @@ Public Class Form1
                 conexion.Open()
                 Dim query As String = "SELECT * FROM usuarios WHERE Rut= @RUT AND Contraseña=@pass"
                 Dim cmd As New MySqlCommand(query, conexion)
-                'cmd.Connection = conexion
                 cmd.Parameters.AddWithValue("@RUT", RUT)
                 cmd.Parameters.AddWithValue("@pass", PASS)
                 Dim resultado As MySqlDataReader

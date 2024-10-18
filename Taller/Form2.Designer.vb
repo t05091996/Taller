@@ -31,13 +31,15 @@ Partial Class Form2
         Me.IconButton5 = New FontAwesome.Sharp.IconButton()
         Me.lbl_Info = New System.Windows.Forms.Label()
         Me.lbl_Privilegio = New System.Windows.Forms.Label()
+        Me.btnUsuarios = New FontAwesome.Sharp.IconButton()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(98, 143)
+        Me.Label1.Location = New System.Drawing.Point(116, 104)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(303, 27)
@@ -125,20 +127,38 @@ Partial Class Form2
         'lbl_Info
         '
         Me.lbl_Info.AutoSize = True
-        Me.lbl_Info.Location = New System.Drawing.Point(239, 9)
+        Me.lbl_Info.BackColor = System.Drawing.Color.Transparent
+        Me.lbl_Info.Location = New System.Drawing.Point(302, 9)
         Me.lbl_Info.Name = "lbl_Info"
-        Me.lbl_Info.Size = New System.Drawing.Size(171, 21)
+        Me.lbl_Info.Size = New System.Drawing.Size(77, 21)
         Me.lbl_Info.TabIndex = 11
-        Me.lbl_Info.Text = "Usuario: Aseguradora"
+        Me.lbl_Info.Text = "Usuario: "
         '
         'lbl_Privilegio
         '
         Me.lbl_Privilegio.AutoSize = True
-        Me.lbl_Privilegio.Location = New System.Drawing.Point(239, 43)
+        Me.lbl_Privilegio.BackColor = System.Drawing.Color.Transparent
+        Me.lbl_Privilegio.Location = New System.Drawing.Point(302, 40)
         Me.lbl_Privilegio.Name = "lbl_Privilegio"
         Me.lbl_Privilegio.Size = New System.Drawing.Size(88, 21)
         Me.lbl_Privilegio.TabIndex = 12
         Me.lbl_Privilegio.Text = "Privilegio: "
+        '
+        'btnUsuarios
+        '
+        Me.btnUsuarios.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserEdit
+        Me.btnUsuarios.IconColor = System.Drawing.SystemColors.AppWorkspace
+        Me.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnUsuarios.IconSize = 40
+        Me.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnUsuarios.Location = New System.Drawing.Point(152, 332)
+        Me.btnUsuarios.Name = "btnUsuarios"
+        Me.btnUsuarios.Size = New System.Drawing.Size(227, 40)
+        Me.btnUsuarios.TabIndex = 13
+        Me.btnUsuarios.Text = "Gestión de Usuarios"
+        Me.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnUsuarios.UseVisualStyleBackColor = True
         '
         'Form2
         '
@@ -146,6 +166,7 @@ Partial Class Form2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Taller.My.Resources.Resources.deliverytruck_106577
         Me.ClientSize = New System.Drawing.Size(510, 498)
+        Me.Controls.Add(Me.btnUsuarios)
         Me.Controls.Add(Me.lbl_Privilegio)
         Me.Controls.Add(Me.lbl_Info)
         Me.Controls.Add(Me.IconButton5)
@@ -178,4 +199,5 @@ Partial Class Form2
     Friend WithEvents IconButton5 As FontAwesome.Sharp.IconButton
     Friend WithEvents lbl_Info As Label
     Friend WithEvents lbl_Privilegio As Label
+    Friend WithEvents btnUsuarios As FontAwesome.Sharp.IconButton
 End Class

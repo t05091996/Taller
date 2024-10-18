@@ -84,8 +84,9 @@ Partial Class Form1
         '
         'PictureBox1
         '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = Global.Taller.My.Resources.Resources._148womanmechanic2_100757
-        Me.PictureBox1.Location = New System.Drawing.Point(129, 1)
+        Me.PictureBox1.Location = New System.Drawing.Point(140, -1)
         Me.PictureBox1.Margin = New System.Windows.Forms.Padding(5)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(134, 122)
