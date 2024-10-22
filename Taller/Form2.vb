@@ -14,9 +14,8 @@
 
     End Sub
 
-    Private Sub btnUsuarios_Click(sender As Object, e As EventArgs) Handles btnUsuarios.Click
-        Dim Secundario As Form3 = New Form3()
-        Secundario.Show()
-        My.Forms.Form2.Dispose()
+    Private Sub BtnUsuarios_Click(sender As Object, e As EventArgs) Handles BtnUsuarios.Click
+        Form3.Show()
+        Me.Close()
     End Sub
 End Class

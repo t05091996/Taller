@@ -27,15 +27,16 @@ Partial Class Form3
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.BtnCrear = New FontAwesome.Sharp.IconButton()
         Me.BtnBuscar = New FontAwesome.Sharp.IconButton()
         Me.BtnActualizar = New FontAwesome.Sharp.IconButton()
-        Me.IconButton4 = New FontAwesome.Sharp.IconButton()
+        Me.BtnEliminar = New FontAwesome.Sharp.IconButton()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtRut = New System.Windows.Forms.TextBox()
         Me.txtTipo = New System.Windows.Forms.TextBox()
-        Me.txtContraseña = New System.Windows.Forms.TextBox()
+        Me.txtContrasena = New System.Windows.Forms.TextBox()
         Me.txtCorreo = New System.Windows.Forms.TextBox()
+        Me.BtnVer = New FontAwesome.Sharp.IconButton()
         Me.SuspendLayout()
         '
         'Label1
@@ -81,20 +82,20 @@ Partial Class Form3
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Tipo: "
         '
-        'IconButton1
+        'BtnCrear
         '
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.UserPlus
-        Me.IconButton1.IconColor = System.Drawing.SystemColors.AppWorkspace
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 25
-        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton1.Location = New System.Drawing.Point(22, 309)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(101, 33)
-        Me.IconButton1.TabIndex = 4
-        Me.IconButton1.Text = "Crear"
-        Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.IconButton1.UseVisualStyleBackColor = True
+        Me.BtnCrear.IconChar = FontAwesome.Sharp.IconChar.UserPlus
+        Me.BtnCrear.IconColor = System.Drawing.SystemColors.AppWorkspace
+        Me.BtnCrear.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BtnCrear.IconSize = 25
+        Me.BtnCrear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnCrear.Location = New System.Drawing.Point(22, 309)
+        Me.BtnCrear.Name = "BtnCrear"
+        Me.BtnCrear.Size = New System.Drawing.Size(101, 33)
+        Me.BtnCrear.TabIndex = 4
+        Me.BtnCrear.Text = "Crear"
+        Me.BtnCrear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnCrear.UseVisualStyleBackColor = True
         '
         'BtnBuscar
         '
@@ -126,20 +127,20 @@ Partial Class Form3
         Me.BtnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnActualizar.UseVisualStyleBackColor = True
         '
-        'IconButton4
+        'BtnEliminar
         '
-        Me.IconButton4.IconChar = FontAwesome.Sharp.IconChar.UsersSlash
-        Me.IconButton4.IconColor = System.Drawing.SystemColors.AppWorkspace
-        Me.IconButton4.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton4.IconSize = 30
-        Me.IconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton4.Location = New System.Drawing.Point(170, 375)
-        Me.IconButton4.Name = "IconButton4"
-        Me.IconButton4.Size = New System.Drawing.Size(101, 33)
-        Me.IconButton4.TabIndex = 7
-        Me.IconButton4.Text = "Eliminar"
-        Me.IconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.IconButton4.UseVisualStyleBackColor = True
+        Me.BtnEliminar.IconChar = FontAwesome.Sharp.IconChar.UsersSlash
+        Me.BtnEliminar.IconColor = System.Drawing.SystemColors.AppWorkspace
+        Me.BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BtnEliminar.IconSize = 30
+        Me.BtnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnEliminar.Location = New System.Drawing.Point(170, 375)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.Size = New System.Drawing.Size(101, 33)
+        Me.BtnEliminar.TabIndex = 7
+        Me.BtnEliminar.Text = "Eliminar"
+        Me.BtnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnEliminar.UseVisualStyleBackColor = True
         '
         'Label5
         '
@@ -154,47 +155,62 @@ Partial Class Form3
         '
         'txtRut
         '
-        Me.txtRut.Location = New System.Drawing.Point(71, 57)
+        Me.txtRut.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.txtRut.Location = New System.Drawing.Point(103, 60)
         Me.txtRut.Name = "txtRut"
         Me.txtRut.Size = New System.Drawing.Size(157, 26)
         Me.txtRut.TabIndex = 9
         '
         'txtTipo
         '
-        Me.txtTipo.Location = New System.Drawing.Point(63, 244)
+        Me.txtTipo.Location = New System.Drawing.Point(103, 244)
         Me.txtTipo.Name = "txtTipo"
         Me.txtTipo.Size = New System.Drawing.Size(157, 26)
         Me.txtTipo.TabIndex = 10
         '
-        'txtContraseña
+        'txtContrasena
         '
-        Me.txtContraseña.Location = New System.Drawing.Point(103, 187)
-        Me.txtContraseña.Name = "txtContraseña"
-        Me.txtContraseña.Size = New System.Drawing.Size(157, 26)
-        Me.txtContraseña.TabIndex = 11
+        Me.txtContrasena.Location = New System.Drawing.Point(103, 187)
+        Me.txtContrasena.Name = "txtContrasena"
+        Me.txtContrasena.Size = New System.Drawing.Size(157, 26)
+        Me.txtContrasena.TabIndex = 11
+        Me.txtContrasena.UseSystemPasswordChar = True
         '
         'txtCorreo
         '
-        Me.txtCorreo.Location = New System.Drawing.Point(71, 121)
+        Me.txtCorreo.Location = New System.Drawing.Point(103, 125)
         Me.txtCorreo.Name = "txtCorreo"
         Me.txtCorreo.Size = New System.Drawing.Size(157, 26)
         Me.txtCorreo.TabIndex = 12
+        '
+        'BtnVer
+        '
+        Me.BtnVer.IconChar = FontAwesome.Sharp.IconChar.Eye
+        Me.BtnVer.IconColor = System.Drawing.Color.DarkGray
+        Me.BtnVer.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BtnVer.IconSize = 30
+        Me.BtnVer.Location = New System.Drawing.Point(270, 185)
+        Me.BtnVer.Name = "BtnVer"
+        Me.BtnVer.Size = New System.Drawing.Size(37, 30)
+        Me.BtnVer.TabIndex = 13
+        Me.BtnVer.UseVisualStyleBackColor = True
         '
         'Form3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Taller.My.Resources.Resources._4105943_accounts_group_people_user_user_group_users_113923
-        Me.ClientSize = New System.Drawing.Size(294, 432)
+        Me.ClientSize = New System.Drawing.Size(331, 432)
+        Me.Controls.Add(Me.BtnVer)
         Me.Controls.Add(Me.txtCorreo)
-        Me.Controls.Add(Me.txtContraseña)
+        Me.Controls.Add(Me.txtContrasena)
         Me.Controls.Add(Me.txtTipo)
         Me.Controls.Add(Me.txtRut)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.IconButton4)
+        Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.BtnActualizar)
         Me.Controls.Add(Me.BtnBuscar)
-        Me.Controls.Add(Me.IconButton1)
+        Me.Controls.Add(Me.BtnCrear)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -206,6 +222,7 @@ Partial Class Form3
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form3"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Uusarios"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -216,13 +233,14 @@ Partial Class Form3
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents BtnCrear As FontAwesome.Sharp.IconButton
     Friend WithEvents BtnBuscar As FontAwesome.Sharp.IconButton
     Friend WithEvents BtnActualizar As FontAwesome.Sharp.IconButton
-    Friend WithEvents IconButton4 As FontAwesome.Sharp.IconButton
+    Friend WithEvents BtnEliminar As FontAwesome.Sharp.IconButton
     Friend WithEvents Label5 As Label
     Friend WithEvents txtRut As TextBox
     Friend WithEvents txtTipo As TextBox
-    Friend WithEvents txtContraseña As TextBox
+    Friend WithEvents txtContrasena As TextBox
     Friend WithEvents txtCorreo As TextBox
+    Friend WithEvents BtnVer As FontAwesome.Sharp.IconButton
 End Class

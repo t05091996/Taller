@@ -31,7 +31,7 @@ Partial Class Form2
         Me.IconButton5 = New FontAwesome.Sharp.IconButton()
         Me.lbl_Info = New System.Windows.Forms.Label()
         Me.lbl_Privilegio = New System.Windows.Forms.Label()
-        Me.btnUsuarios = New FontAwesome.Sharp.IconButton()
+        Me.BtnUsuarios = New FontAwesome.Sharp.IconButton()
         Me.SuspendLayout()
         '
         'Label1
@@ -144,21 +144,21 @@ Partial Class Form2
         Me.lbl_Privilegio.TabIndex = 12
         Me.lbl_Privilegio.Text = "Privilegio: "
         '
-        'btnUsuarios
+        'BtnUsuarios
         '
-        Me.btnUsuarios.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserEdit
-        Me.btnUsuarios.IconColor = System.Drawing.SystemColors.AppWorkspace
-        Me.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnUsuarios.IconSize = 40
-        Me.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnUsuarios.Location = New System.Drawing.Point(152, 332)
-        Me.btnUsuarios.Name = "btnUsuarios"
-        Me.btnUsuarios.Size = New System.Drawing.Size(227, 40)
-        Me.btnUsuarios.TabIndex = 13
-        Me.btnUsuarios.Text = "Gestión de Usuarios"
-        Me.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnUsuarios.UseVisualStyleBackColor = True
+        Me.BtnUsuarios.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserEdit
+        Me.BtnUsuarios.IconColor = System.Drawing.SystemColors.AppWorkspace
+        Me.BtnUsuarios.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BtnUsuarios.IconSize = 40
+        Me.BtnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnUsuarios.Location = New System.Drawing.Point(152, 342)
+        Me.BtnUsuarios.Name = "BtnUsuarios"
+        Me.BtnUsuarios.Size = New System.Drawing.Size(227, 40)
+        Me.BtnUsuarios.TabIndex = 13
+        Me.BtnUsuarios.Text = "Gestión de Usuarios"
+        Me.BtnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnUsuarios.UseVisualStyleBackColor = True
         '
         'Form2
         '
@@ -166,7 +166,7 @@ Partial Class Form2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Taller.My.Resources.Resources.deliverytruck_106577
         Me.ClientSize = New System.Drawing.Size(510, 498)
-        Me.Controls.Add(Me.btnUsuarios)
+        Me.Controls.Add(Me.BtnUsuarios)
         Me.Controls.Add(Me.lbl_Privilegio)
         Me.Controls.Add(Me.lbl_Info)
         Me.Controls.Add(Me.IconButton5)
@@ -199,5 +199,5 @@ Partial Class Form2
     Friend WithEvents IconButton5 As FontAwesome.Sharp.IconButton
     Friend WithEvents lbl_Info As Label
     Friend WithEvents lbl_Privilegio As Label
-    Friend WithEvents btnUsuarios As FontAwesome.Sharp.IconButton
+    Friend WithEvents BtnUsuarios As FontAwesome.Sharp.IconButton
 End Class

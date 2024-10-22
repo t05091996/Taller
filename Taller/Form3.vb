@@ -1,61 +1,125 @@
-﻿Imports MySql.Data.MySqlClient
-Public Class Form3
-    Dim connectionString As String = "Server=localhost;Database=taller;User ID='root';Password='';"
+﻿Public Class Form3
+
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
         Dim rut As String = txtRut.Text
         If String.IsNullOrWhiteSpace(rut) Then
             MessageBox.Show("Debe escribir un RUT, antes de realizar una búsqueda!!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
-        End If
-        Dim aprobado As  = VerificarUsuario(rut)
-        If Not String.IsNullOrWhiteSpace(persona.RUT) Then
-            txtRut.Text = .RUT
-            txtCorreo.Text = .Correo
-            txtContraseña.Text = .Contraseña
-            txtTipo.Text = .Tipo
-            End Select
-
         Else
-            Dim respuesta As Int32 = MessageBox.Show("¿Desea registrarse?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-            If respuesta = vbYes Then
-                LimpiarI()
+            Dim usuario As Usuario = GetUsuariosByRun(rut)
+            If (Not String.IsNullOrEmpty(usuario.Rut)) Then
+                txtCorreo.Text = usuario.Correo
+                txtContrasena.Text = usuario.Contrasena
+                txtTipo.Text = usuario.Tipo
+            Else
+                MessageBox.Show("El usuario ingresado NO existe", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
-
-            Return
-
         End If
-
-
     End Sub
 
     Private Sub BtnActualizar_Click(sender As Object, e As EventArgs) Handles BtnActualizar.Click
         Dim rut As String = txtRut.Text
         Dim correo As String = txtCorreo.Text
-        Dim contraseña As String = txtContraseña.Text
+        Dim contrasena As String = txtContrasena.Text
         Dim tipo As String = txtTipo.Text
-        If String.IsNullOrWhiteSpace(rut) Or String.IsNullOrWhiteSpace(nombre) Or String.IsNullOrWhiteSpace(apellido) Or String.IsNullOrWhiteSpace(comuna) Then
+        If String.IsNullOrWhiteSpace(rut) Or String.IsNullOrWhiteSpace(correo) Or String.IsNullOrWhiteSpace(contrasena) Or String.IsNullOrWhiteSpace(tipo) Then
             MessageBox.Show("Por favor, complete todos los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
+        Else
+            Dim existe As Usuario = GetUsuariosByRun(rut)
+            If Not String.IsNullOrEmpty(existe.Rut) Then
+                Dim usuario As New Usuario With {
+                    .Rut = rut,
+                    .Correo = correo,
+                    .Contrasena = contrasena,
+                    .Tipo = tipo
+                }
+                Dim update As Boolean = UpdateUsuario(usuario)
+                If update Then
+                    MessageBox.Show("Usuario Actualizado Correctamente.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Limpiar()
+                    Return
+                End If
+            Else
+                MessageBox.Show("El usuario que desea modificar, no existe.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
         End If
-
-        Using conexion As New MySqlConnection(connectionString)
-            Try
-                conexion.Open()
-                Dim query As String = "UPDATE usuarios SET correo=@correo, contraseña=@contraseña, tipo=@tipo" &
-                                    "WHERE RUT= @rut"
-                Dim cmd As New MySqlCommand(query, conexion)
-                cmd.Parameters.AddWithValue("@rut", rut)
-                cmd.Parameters.AddWithValue("@correo", correo)
-                cmd.Parameters.AddWithValue("@contraseña", contraseña)
-                cmd.Parameters.AddWithValue("@tipo", tipo)
-                cmd.ExecuteNonQuery()
-                MessageBox.Show("Datos actualizados exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                conexion.Close()
-            Catch ex As Exception
-                conexion.Close()
-            End Try
-        End Using
-        Limpiar()
-
+        MessageBox.Show("Ha Ocurrido un Error intentelo más tarde.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
+
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+        Dim rut As String = txtRut.Text
+        If String.IsNullOrWhiteSpace(rut) Then
+            MessageBox.Show("Debe escribir un RUT para eliminar un usuario", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        Else
+            Dim usuario As Usuario = GetUsuariosByRun(rut)
+            If (Not String.IsNullOrEmpty(usuario.Rut)) Then
+                Dim respuesta As Int32 = MessageBox.Show("¿Realmente Desea eliminar al usuario?, esta acción no se puede revertir",
+                                                         "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+                If respuesta = vbYes Then
+                    Dim delete As Boolean = DeleteUsuario(rut)
+                    If delete Then
+                        MessageBox.Show("Usuario eliminado correctamente!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Limpiar()
+                        Return
+                    Else
+                        MessageBox.Show("No se ha podido eliminar al usuario intentelo más tarde!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                End If
+            Else
+                MessageBox.Show("El rut ingresado no corresponde a ningun Usuario, intente con un usuario existente.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        End If
+    End Sub
+
+    Sub Limpiar()
+        txtContrasena.Clear()
+        txtCorreo.Clear()
+        txtRut.Clear()
+        txtTipo.Clear()
+    End Sub
+
+    Private Sub BtnCrear_Click(sender As Object, e As EventArgs) Handles BtnCrear.Click
+        Dim rut As String = txtRut.Text
+        Dim correo As String = txtCorreo.Text
+        Dim contrasena As String = txtContrasena.Text
+        Dim tipo As String = txtTipo.Text
+        If String.IsNullOrWhiteSpace(rut) Or String.IsNullOrWhiteSpace(correo) Or String.IsNullOrWhiteSpace(contrasena) Or String.IsNullOrWhiteSpace(tipo) Then
+            MessageBox.Show("Por favor, complete todos los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        Else
+            Dim existe As Usuario = GetUsuariosByRun(rut)
+            If Not String.IsNullOrEmpty(existe.Rut) Then
+                MessageBox.Show("El usuario ya existe, intente u usuario distinto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            Dim usuario As New Usuario With {
+                .Rut = rut,
+                .Correo = correo,
+                .Contrasena = contrasena,
+                .Tipo = tipo
+            }
+            Dim update As Boolean = CreateUsuario(usuario)
+            If update Then
+                MessageBox.Show("Usuario Creado Correctamente.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Limpiar()
+                Return
+            End If
+        End If
+        MessageBox.Show("Ha Ocurrido un Error intentelo más tarde.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    End Sub
+
+    Private Sub BtnVer_Click(sender As Object, e As EventArgs) Handles BtnVer.Click
+        If txtContrasena.UseSystemPasswordChar Then
+            txtContrasena.UseSystemPasswordChar = False
+            BtnVer.IconChar = FontAwesome.Sharp.IconChar.EyeSlash
+        Else
+            txtContrasena.UseSystemPasswordChar = True
+            BtnVer.IconChar = FontAwesome.Sharp.IconChar.Eye
+        End If
+    End Sub
+
 End Class
