@@ -63,6 +63,26 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _146manmechanic2_100581() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("146manmechanic2_100581", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property _1486504352_checklist_clipboard_inventory_list_report_tasks_todo_81326() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("1486504352-checklist-clipboard-inventory-list-report-tasks-todo_81326", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property _148womanmechanic2_100757() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("148womanmechanic2_100757", resourceCulture)

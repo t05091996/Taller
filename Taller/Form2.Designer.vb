@@ -39,7 +39,7 @@ Partial Class Form2
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(116, 104)
+        Me.Label1.Location = New System.Drawing.Point(245, 142)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(303, 27)
@@ -54,7 +54,7 @@ Partial Class Form2
         Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton1.IconSize = 30
         Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton1.Location = New System.Drawing.Point(1, -1)
+        Me.IconButton1.Location = New System.Drawing.Point(1, 9)
         Me.IconButton1.Name = "IconButton1"
         Me.IconButton1.Size = New System.Drawing.Size(76, 31)
         Me.IconButton1.TabIndex = 6
@@ -64,14 +64,14 @@ Partial Class Form2
         '
         'IconButton2
         '
-        Me.IconButton2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton2.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Dolly
         Me.IconButton2.IconColor = System.Drawing.SystemColors.AppWorkspace
         Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton2.Location = New System.Drawing.Point(34, 221)
+        Me.IconButton2.Location = New System.Drawing.Point(49, 221)
         Me.IconButton2.Name = "IconButton2"
-        Me.IconButton2.Size = New System.Drawing.Size(227, 46)
+        Me.IconButton2.Size = New System.Drawing.Size(300, 46)
         Me.IconButton2.TabIndex = 7
         Me.IconButton2.Text = "Gestión de Repuestos"
         Me.IconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -79,14 +79,14 @@ Partial Class Form2
         '
         'IconButton3
         '
-        Me.IconButton3.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton3.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.Gears
         Me.IconButton3.IconColor = System.Drawing.SystemColors.AppWorkspace
         Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton3.Location = New System.Drawing.Point(267, 221)
+        Me.IconButton3.Location = New System.Drawing.Point(424, 221)
         Me.IconButton3.Name = "IconButton3"
-        Me.IconButton3.Size = New System.Drawing.Size(226, 46)
+        Me.IconButton3.Size = New System.Drawing.Size(313, 46)
         Me.IconButton3.TabIndex = 8
         Me.IconButton3.Text = "Gestión de Ventas de Repuestos"
         Me.IconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -94,15 +94,15 @@ Partial Class Form2
         '
         'IconButton4
         '
-        Me.IconButton4.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton4.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton4.IconChar = FontAwesome.Sharp.IconChar.Paperclip
         Me.IconButton4.IconColor = System.Drawing.SystemColors.AppWorkspace
         Me.IconButton4.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton4.IconSize = 40
         Me.IconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton4.Location = New System.Drawing.Point(34, 273)
+        Me.IconButton4.Location = New System.Drawing.Point(49, 283)
         Me.IconButton4.Name = "IconButton4"
-        Me.IconButton4.Size = New System.Drawing.Size(227, 40)
+        Me.IconButton4.Size = New System.Drawing.Size(300, 40)
         Me.IconButton4.TabIndex = 9
         Me.IconButton4.Text = "Gestión de Solicitudes de servicio"
         Me.IconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -110,15 +110,15 @@ Partial Class Form2
         '
         'IconButton5
         '
-        Me.IconButton5.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton5.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IconButton5.IconChar = FontAwesome.Sharp.IconChar.FireFlameCurved
         Me.IconButton5.IconColor = System.Drawing.SystemColors.AppWorkspace
         Me.IconButton5.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton5.IconSize = 35
         Me.IconButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton5.Location = New System.Drawing.Point(267, 273)
+        Me.IconButton5.Location = New System.Drawing.Point(424, 283)
         Me.IconButton5.Name = "IconButton5"
-        Me.IconButton5.Size = New System.Drawing.Size(226, 40)
+        Me.IconButton5.Size = New System.Drawing.Size(313, 40)
         Me.IconButton5.TabIndex = 10
         Me.IconButton5.Text = "Gestión de Siniestros"
         Me.IconButton5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -128,7 +128,7 @@ Partial Class Form2
         '
         Me.lbl_Info.AutoSize = True
         Me.lbl_Info.BackColor = System.Drawing.Color.Transparent
-        Me.lbl_Info.Location = New System.Drawing.Point(302, 9)
+        Me.lbl_Info.Location = New System.Drawing.Point(484, 9)
         Me.lbl_Info.Name = "lbl_Info"
         Me.lbl_Info.Size = New System.Drawing.Size(77, 21)
         Me.lbl_Info.TabIndex = 11
@@ -138,7 +138,7 @@ Partial Class Form2
         '
         Me.lbl_Privilegio.AutoSize = True
         Me.lbl_Privilegio.BackColor = System.Drawing.Color.Transparent
-        Me.lbl_Privilegio.Location = New System.Drawing.Point(302, 40)
+        Me.lbl_Privilegio.Location = New System.Drawing.Point(484, 40)
         Me.lbl_Privilegio.Name = "lbl_Privilegio"
         Me.lbl_Privilegio.Size = New System.Drawing.Size(88, 21)
         Me.lbl_Privilegio.TabIndex = 12
@@ -146,15 +146,15 @@ Partial Class Form2
         '
         'BtnUsuarios
         '
-        Me.BtnUsuarios.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnUsuarios.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserEdit
         Me.BtnUsuarios.IconColor = System.Drawing.SystemColors.AppWorkspace
         Me.BtnUsuarios.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.BtnUsuarios.IconSize = 40
         Me.BtnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnUsuarios.Location = New System.Drawing.Point(152, 342)
+        Me.BtnUsuarios.Location = New System.Drawing.Point(270, 367)
         Me.BtnUsuarios.Name = "BtnUsuarios"
-        Me.BtnUsuarios.Size = New System.Drawing.Size(227, 40)
+        Me.BtnUsuarios.Size = New System.Drawing.Size(254, 40)
         Me.BtnUsuarios.TabIndex = 13
         Me.BtnUsuarios.Text = "Gestión de Usuarios"
         Me.BtnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -165,7 +165,8 @@ Partial Class Form2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Taller.My.Resources.Resources.deliverytruck_106577
-        Me.ClientSize = New System.Drawing.Size(510, 498)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ClientSize = New System.Drawing.Size(777, 527)
         Me.Controls.Add(Me.BtnUsuarios)
         Me.Controls.Add(Me.lbl_Privilegio)
         Me.Controls.Add(Me.lbl_Info)

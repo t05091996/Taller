@@ -102,8 +102,8 @@
                 .Contrasena = contrasena,
                 .Tipo = tipo
             }
-            Dim update As Boolean = CreateUsuario(usuario)
-            If update Then
+            Dim crear As Boolean = CreateUsuario(usuario)
+            If crear Then
                 MessageBox.Show("Usuario Creado Correctamente.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Limpiar()
                 Return
@@ -122,4 +122,8 @@
         End If
     End Sub
 
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Form2.Show()
+        Me.Close()
+    End Sub
 End Class

@@ -62,6 +62,7 @@ Partial Class Form1
         Me.txtRut.Name = "txtRut"
         Me.txtRut.Size = New System.Drawing.Size(182, 29)
         Me.txtRut.TabIndex = 4
+        Me.txtRut.Text = "141773992"
         '
         'Label3
         '
@@ -80,6 +81,7 @@ Partial Class Form1
         Me.txtPass.Name = "txtPass"
         Me.txtPass.Size = New System.Drawing.Size(182, 29)
         Me.txtPass.TabIndex = 6
+        Me.txtPass.Text = "123456"
         Me.txtPass.UseSystemPasswordChar = True
         '
         'PictureBox1
