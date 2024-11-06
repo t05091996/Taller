@@ -1,4 +1,4 @@
-﻿Public Class Form3
+﻿Public Class FormUsuarios
 
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
         Dim rut As String = txtRut.Text
@@ -123,7 +123,7 @@
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Form2.Show()
+        FormMenu.Show()
         Me.Close()
     End Sub
 End Class

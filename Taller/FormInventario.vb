@@ -1,4 +1,4 @@
-﻿Public Class Form4
+﻿Public Class FormInventario
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim lista = GetProducto()
         cbProducto.DataSource = lista
@@ -14,20 +14,6 @@
         txtRepuesto.Clear()
         cbProducto.SelectedIndex = 1
     End Sub
-
-    Function ValidarVacio() As Boolean
-        Dim r As Boolean = True
-        For Each c As Control In Me.Controls
-            If TypeOf c Is TextBox Then
-                Dim textBox As TextBox = CType(c, TextBox)
-                If textBox.Text = String.Empty Then
-                    MessageBox.Show($"Debe rellenar el campo {textBox.Name.Replace("txt", "")}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    r = False
-                End If
-            End If
-        Next
-        Return r
-    End Function
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         If String.IsNullOrEmpty(txtID.Text) Then
@@ -47,7 +33,7 @@
     End Sub
 
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-        If ValidarVacio() Then
+        If ValidarVacio(Me) Then
             Dim producto = New Repuestos With {
                         .RepuestoID = txtID.Text,
                         .Precio = txtPrecio.Text,
@@ -69,7 +55,7 @@
     End Sub
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
-        If ValidarVacio() Then
+        If ValidarVacio(Me) Then
             Dim producto = New Repuestos With {
                         .RepuestoID = txtID.Text,
                         .Precio = txtPrecio.Text,
@@ -89,10 +75,10 @@
                     cbProducto.SelectedIndex = 1
                     Limpiar()
                 Else
-                    MessageBox.Show("Ha ocurrido un ERROR!, NO se puede duplicar el registro", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Ha ocurrido un ERROR!, NO se puede duplicar el registro", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MessageBox.Show("Ha ocurrido un ERROR!, NO se puede duplicar el registro", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Ha ocurrido un ERROR!, NO se puede duplicar el registro", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         End If
     End Sub
@@ -104,7 +90,7 @@
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Dim name As String = txtRepuesto.Text
         If String.IsNullOrEmpty(name) Then
-            MessageBox.Show("Debe escribir el nombre del producto para buscar", "Atención!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Debe escribir el nombre del producto para buscar", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             Dim producto = GetProductoLikeName(name)
             txtID.Text = producto.RepuestoID
@@ -127,7 +113,7 @@
     End Sub
 
     Private Sub btnVolver_Click(sender As Object, e As EventArgs) Handles btnVolver.Click
-        Form2.Show()
+        FormMenu.Show()
         Me.Close()
     End Sub
 End Class

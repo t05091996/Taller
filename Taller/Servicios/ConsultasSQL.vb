@@ -2,55 +2,6 @@
 Module ConsultasSQL
     Private Property ConnectionString As String = "Server=localhost;Database=taller;User ID='root';Password='';"
 
-    Public Function GetUsuariosByRun(ByRef run As String) As Usuario
-        Dim usuario As New Usuario()
-        Using conexion As New MySqlConnection(ConnectionString)
-            Try
-                conexion.Open()
-                Dim query As String = "SELECT * FROM usuarios WHERE RUT=@rut"
-                Dim cmd As New MySqlCommand(query, conexion)
-                cmd.Parameters.AddWithValue("@rut", run)
-                Dim resultado As MySqlDataReader
-                resultado = cmd.ExecuteReader
-                While (resultado.Read())
-                    usuario.Rut = Convert.ToString(resultado("Rut"))
-                    usuario.Correo = Convert.ToString(resultado("Correo"))
-                    usuario.Tipo = Convert.ToString(resultado("Tipo"))
-                    usuario.Contrasena = Convert.ToString(resultado("Contraseña"))
-                End While
-                conexion.Close()
-            Catch ex As Exception
-                conexion.Close()
-            End Try
-        End Using
-        Return usuario
-    End Function
-
-    Public Function GetAllUsuarios() As List(Of Usuario)
-        Dim usuarios As New List(Of Usuario)
-        Using conexion As New MySqlConnection(ConnectionString)
-            Try
-                conexion.Open()
-                Dim query As String = "SELECT * FROM usuarios"
-                Dim cmd As New MySqlCommand(query, conexion)
-                Dim resultado As MySqlDataReader
-                resultado = cmd.ExecuteReader
-                While (resultado.Read())
-                    Dim usuario As New Usuario With {
-                        .Rut = Convert.ToString(resultado("Rut")),
-                        .Correo = Convert.ToString(resultado("Correo")),
-                        .Tipo = Convert.ToString(resultado("Tipo"))
-                    }
-                    usuarios.Add(usuario)
-                End While
-                conexion.Close()
-            Catch ex As Exception
-                conexion.Close()
-            End Try
-        End Using
-        Return usuarios
-    End Function
-
     Public Function GetEmpleadoByRun(ByRef run As String) As Empleado
         Dim empleado As New Empleado()
         Using conexion As New MySqlConnection(ConnectionString)
@@ -108,7 +59,7 @@ Module ConsultasSQL
         End Using
         Return empleados
     End Function
-
+    ' crud usuario
     Public Function CreateUsuario(ByRef usuario As Usuario) As Boolean
         Using conexion As New MySqlConnection(ConnectionString)
             Try
@@ -167,6 +118,55 @@ Module ConsultasSQL
         Return False
     End Function
 
+    Public Function GetUsuariosByRun(ByRef run As String) As Usuario
+        Dim usuario As New Usuario()
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM usuarios WHERE RUT=@rut"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", run)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    usuario.Rut = Convert.ToString(resultado("Rut"))
+                    usuario.Correo = Convert.ToString(resultado("Correo"))
+                    usuario.Tipo = Convert.ToString(resultado("Tipo"))
+                    usuario.Contrasena = Convert.ToString(resultado("Contraseña"))
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return usuario
+    End Function
+
+    Public Function GetAllUsuarios() As List(Of Usuario)
+        Dim usuarios As New List(Of Usuario)
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM usuarios"
+                Dim cmd As New MySqlCommand(query, conexion)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    Dim usuario As New Usuario With {
+                        .Rut = Convert.ToString(resultado("Rut")),
+                        .Correo = Convert.ToString(resultado("Correo")),
+                        .Tipo = Convert.ToString(resultado("Tipo"))
+                    }
+                    usuarios.Add(usuario)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return usuarios
+    End Function
+
     Public Function VerificarUsuario(RUT As String, PASS As String) As Boolean
         Dim aprobado = False
         Using conexion As New MySqlConnection(ConnectionString)
@@ -194,6 +194,7 @@ Module ConsultasSQL
         Return aprobado
     End Function
 
+    'crud producto
     Public Function GetProducto() As List(Of ModeloCombo)
         Dim lista As New List(Of ModeloCombo)
         Using conexion As New MySqlConnection(ConnectionString)
@@ -268,6 +269,33 @@ Module ConsultasSQL
         Return lista
     End Function
 
+    Public Function GetProductos(ByRef name As String) As List(Of Repuestos)
+        Dim lista As New List(Of Repuestos)
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM repuestos WHERE NombreRepuesto like @name"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@name", name + "%")
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    Dim producto As New Repuestos With {
+                    .RepuestoID = Convert.ToInt32(resultado("RepuestoID")),
+                    .NombreRepuesto = Convert.ToString(resultado("NombreRepuesto")),
+                    .Precio = Convert.ToDecimal(resultado("PrecioUnitario")),
+                    .Proveedor = Convert.ToString(resultado("Proveedor")),
+                    .Stock = Convert.ToInt32(resultado("CantidadStock"))
+                    }
+                    lista.Add(producto)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
+    End Function
 
     Public Function CreateRepuesto(ByRef repuesto As Repuestos) As Boolean
         Using conexion As New MySqlConnection(ConnectionString)
@@ -327,5 +355,223 @@ Module ConsultasSQL
             End Try
         End Using
         Return False
+    End Function
+
+    'crud cliente
+    Public Function GetClienteByRun(ByRef run As String) As Cliente
+        Dim cliente As New Cliente()
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM clientes WHERE RUT=@rut"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", run)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    cliente.Rut = Convert.ToString(resultado("Rut"))
+                    cliente.Nombre = Convert.ToString(resultado("Nombre"))
+                    cliente.ApellidoP = Convert.ToString(resultado("ApellidoP"))
+                    cliente.ApellidoM = Convert.ToString(resultado("ApellidoM"))
+                    cliente.Telefono = Convert.ToString(resultado("Telefono"))
+                    cliente.Direccion = Convert.ToString(resultado("Direccion"))
+                    cliente.Comuna = Convert.ToString(resultado("Comuna"))
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return cliente
+    End Function
+
+    Public Function CreateCliente(ByRef cliente As Cliente) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "INSERT INTO clientes (Rut, Nombre, ApellidoP, ApellidoM, Telefono, Direccion, Comuna ) " &
+                                    "VALUES (@rut, @Nombre, @ApellidoP, @ApellidoM, @Telefono , @Direccion , @Comuna)"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", cliente.Rut)
+                cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre)
+                cmd.Parameters.AddWithValue("@ApellidoP", cliente.ApellidoP)
+                cmd.Parameters.AddWithValue("@ApellidoM", cliente.ApellidoM)
+                cmd.Parameters.AddWithValue("@Telefono", cliente.Telefono)
+                cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion)
+                cmd.Parameters.AddWithValue("@Comuna", cliente.Comuna)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function UpdateCliente(ByRef cliente As Cliente) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "Update clientes SET Nombre=@Nombre, ApellidoP=@ApellidoP," &
+                                    "ApellidoM=@ApellidoM, Telefono=@Telefono, Direccion=@Direccion, Comuna=@Comuna " &
+                                    "WHERE Rut=@rut"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", cliente.Rut)
+                cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre)
+                cmd.Parameters.AddWithValue("@ApellidoP", cliente.ApellidoP)
+                cmd.Parameters.AddWithValue("@ApellidoM", cliente.ApellidoM)
+                cmd.Parameters.AddWithValue("@Telefono", cliente.Telefono)
+                cmd.Parameters.AddWithValue("@Direccion", cliente.Direccion)
+                cmd.Parameters.AddWithValue("@Comuna", cliente.Comuna)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function DeleteCliente(ByRef rut As String) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "DELETE FROM clientes WHERE Rut=@rut"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", rut)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    'crud VentaRepuestos
+    Public Function GetVentaRepuestosById(ByRef id As Integer) As VentaRepuestos
+        Dim venta As New VentaRepuestos()
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM ventasrepuestos WHERE VentaID=@id"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    venta.VentaID = Convert.ToInt32(resultado("VentaID"))
+                    venta.CantidadVendida = Convert.ToInt32(resultado("CantidadVendida"))
+                    venta.Cliente = Convert.ToString(resultado("Cliente"))
+                    venta.FechaVenta = Convert.ToDateTime(resultado("FechaVenta"))
+                    venta.NombreRepuesto = Convert.ToString(resultado("NombreRepuesto"))
+                    venta.Total = Convert.ToInt32(resultado("Total"))
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return venta
+    End Function
+
+    Public Function CreateVentaRepuestos(ByRef venta As VentaRepuestos) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "INSERT INTO ventasrepuestos (Total, FechaVenta, Cliente, CantidadVendida, NombreRepuesto, VentaID) " &
+                                    "VALUES (@Total, @FechaVenta, @Cliente, @CantidadVendida, @NombreRepuesto , @VentaID)"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@VentaID", venta.VentaID)
+                cmd.Parameters.AddWithValue("@NombreRepuesto", venta.NombreRepuesto)
+                cmd.Parameters.AddWithValue("@CantidadVendida", venta.CantidadVendida)
+                cmd.Parameters.AddWithValue("@Cliente", venta.Cliente)
+                cmd.Parameters.AddWithValue("@FechaVenta", venta.FechaVenta)
+                cmd.Parameters.AddWithValue("@Total", venta.Total)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function UpdateVentaRepuestos(ByRef venta As VentaRepuestos) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "Update ventasrepuestos SET NombreRepuesto=@NombreRepuesto, CantidadVendida=@CantidadVendida," &
+                                    "Cliente=@Cliente, FechaVenta=@FechaVenta, Total=@Total " &
+                                    "WHERE VentaID=@VentaID"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@VentaID", venta.VentaID)
+                cmd.Parameters.AddWithValue("@NombreRepuesto", venta.NombreRepuesto)
+                cmd.Parameters.AddWithValue("@CantidadVendida", venta.CantidadVendida)
+                cmd.Parameters.AddWithValue("@Cliente", venta.Cliente)
+                cmd.Parameters.AddWithValue("@FechaVenta", venta.FechaVenta)
+                cmd.Parameters.AddWithValue("@Total", venta.Total)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function DeleteVentaRepuestos(ByRef id As Integer) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "DELETE FROM ventasrepuestos WHERE VentaID=@id"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function GetVentaRepuestosFilter(ByRef filtro As Filtros) As List(Of VentaRepuestos)
+        Dim lista As New List(Of VentaRepuestos)
+        filtro.Rut += "%"
+        filtro.Nombre += "%"
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM ventasrepuestos WHERE Cliente like @rut OR NombreRepuesto LIKE @nombre OR FechaVenta=@fechaD"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", filtro.Rut)
+                cmd.Parameters.AddWithValue("@nombre", filtro.Nombre)
+                cmd.Parameters.AddWithValue("@fechaD", filtro.FechaD)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    Dim venta As New VentaRepuestos With {
+                        .VentaID = Convert.ToInt32(resultado("VentaID")),
+                        .CantidadVendida = Convert.ToInt32(resultado("CantidadVendida")),
+                        .Cliente = Convert.ToString(resultado("Cliente")),
+                        .FechaVenta = Convert.ToDateTime(resultado("FechaVenta")),
+                        .NombreRepuesto = Convert.ToString(resultado("NombreRepuesto")),
+                        .Total = Convert.ToInt32(resultado("Total"))
+                    }
+                    lista.Add(venta)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
     End Function
 End Module

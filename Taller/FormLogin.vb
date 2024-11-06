@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class FormLogin
     Private Sub btnIngresar_Click(sender As Object, e As EventArgs) Handles btnIngresar.Click
         Dim rut As String = txtRut.Text
         Dim pass As String = txtPass.Text
@@ -14,7 +14,7 @@
         Dim usuario As Boolean = VerificarUsuario(rut, pass)
 
         If usuario Then
-            Dim Principal As New Form2()
+            Dim Principal As New FormMenu()
             Principal.Show()
             Me.Close()
         Else
