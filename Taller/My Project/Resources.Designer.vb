@@ -153,9 +153,29 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property data_charts_analysis_charts_icon_182993() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("data_charts_analysis_charts_icon_182993", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property deliverytruck_106577() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("deliverytruck_106577", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property graphmagnifier_118081() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("graphmagnifier_118081", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -207,6 +227,16 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("robot_robotics_automated_machine_mechanical_assistant_robotic_technology_icon_260"& _ 
                         "887", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property transportation_travel_automobile_auto_vehicle_journey_car_icon_229636() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("transportation_travel_automobile_auto_vehicle_journey_car_icon_229636", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

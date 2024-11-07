@@ -2,6 +2,7 @@
     Private _Rut As String
     Private _nombre As String
     Private _fechaD As Date
+    Private _fechaH As Date
 
     Public Property FechaD As Date
         Get
@@ -27,6 +28,15 @@
         End Get
         Set(value As String)
             _Rut = value
+        End Set
+    End Property
+
+    Public Property FechaH As Date
+        Get
+            Return _fechaH
+        End Get
+        Set(value As Date)
+            _fechaH = value
         End Set
     End Property
 End Class

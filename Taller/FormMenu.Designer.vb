@@ -160,7 +160,7 @@ Partial Class FormMenu
         Me.BtnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnUsuarios.UseVisualStyleBackColor = True
         '
-        'Form2
+        'FormMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -184,7 +184,7 @@ Partial Class FormMenu
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form2"
+        Me.Name = "FormMenu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Menú Principal"
         Me.ResumeLayout(False)

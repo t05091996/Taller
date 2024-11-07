@@ -544,16 +544,25 @@ Module ConsultasSQL
 
     Public Function GetVentaRepuestosFilter(ByRef filtro As Filtros) As List(Of VentaRepuestos)
         Dim lista As New List(Of VentaRepuestos)
-        filtro.Rut += "%"
-        filtro.Nombre += "%"
+        Dim rut As String = "AND Cliente like @rut"
+        Dim nombre As String = "AND NombreRepuesto like @nombre"
+
+        If String.IsNullOrEmpty(filtro.Rut) Then
+            rut = String.Empty
+        End If
+        If String.IsNullOrEmpty(filtro.Nombre) Then
+            nombre = String.Empty
+        End If
+
         Using conexion As New MySqlConnection(ConnectionString)
             Try
                 conexion.Open()
-                Dim query As String = "SELECT * FROM ventasrepuestos WHERE Cliente like @rut OR NombreRepuesto LIKE @nombre OR FechaVenta=@fechaD"
+                Dim query As String = $"SELECT * FROM ventasrepuestos WHERE FechaVenta BETWEEN @fechaD AND @fechaH {rut} {nombre}"
                 Dim cmd As New MySqlCommand(query, conexion)
-                cmd.Parameters.AddWithValue("@rut", filtro.Rut)
-                cmd.Parameters.AddWithValue("@nombre", filtro.Nombre)
+                cmd.Parameters.AddWithValue("@rut", filtro.Rut & "%")
+                cmd.Parameters.AddWithValue("@nombre", filtro.Nombre & "%")
                 cmd.Parameters.AddWithValue("@fechaD", filtro.FechaD)
+                cmd.Parameters.AddWithValue("@fechaH", filtro.FechaH)
                 Dim resultado As MySqlDataReader
                 resultado = cmd.ExecuteReader
                 While (resultado.Read())
@@ -574,4 +583,140 @@ Module ConsultasSQL
         End Using
         Return lista
     End Function
+
+    'crud Siniestros
+    Public Function GetSiniestroById(ByRef id As Integer) As Siniestros
+        Dim siniestro As New Siniestros()
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM siniestro WHERE SiniestroID=@id"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    siniestro.SiniestroID = Convert.ToInt32(resultado("SiniestroID"))
+                    siniestro.Detalle = Convert.ToString(resultado("Detalle"))
+                    siniestro.EstadoSiniestro = Convert.ToString(resultado("EstadoSiniestro"))
+                    siniestro.FechaSiniestro = Convert.ToDateTime(resultado("FechaSiniestro"))
+                    siniestro.RutCompania = Convert.ToString(resultado("RutCompania"))
+                    siniestro.Rut = Convert.ToString(resultado("Rut"))
+                    siniestro.EstadoSeguro = Convert.ToString(resultado("EstadoSeguro"))
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return siniestro
+    End Function
+
+    Public Function CreateSiniestro(ByRef siniestro As Siniestros) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "INSERT INTO siniestro (SiniestroID, Detalle, EstadoSiniestro,FechaSiniestro,Rutcompania,Rut,EstadoSeguro) " &
+                                    "VALUES (@SiniestroID, @Detalle, @EstadoSiniestro, @FechaSiniestro, @Rutcompania , @Rut,@EstadoSeguro)"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@SiniestroID", siniestro.SiniestroID)
+                cmd.Parameters.AddWithValue("@Detalle", siniestro.Detalle)
+                cmd.Parameters.AddWithValue("@EstadoSiniestro", siniestro.EstadoSiniestro)
+                cmd.Parameters.AddWithValue("@FechaSiniestro", siniestro.FechaSiniestro)
+                cmd.Parameters.AddWithValue("@Rutcompania", siniestro.RutCompania)
+                cmd.Parameters.AddWithValue("@Rut", siniestro.Rut)
+                cmd.Parameters.AddWithValue("@EstadoSeguro", siniestro.EstadoSeguro)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function UpdateSiniestro(ByRef siniestro As Siniestros) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "Update siniestro SET Detalle=@Detalle, EstadoSiniestro=@EstadoSiniestro," &
+                                    "Rutcompania=@Rutcompania, Rut=@Rut, EstadoSeguro=@EstadoSeguro " &
+                                    "WHERE SiniestroID=@SiniestroID"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@SiniestroID", siniestro.SiniestroID)
+                cmd.Parameters.AddWithValue("@Detalle", siniestro.Detalle)
+                cmd.Parameters.AddWithValue("@EstadoSiniestro", siniestro.EstadoSiniestro)
+                cmd.Parameters.AddWithValue("@FechaSiniestro", siniestro.FechaSiniestro)
+                cmd.Parameters.AddWithValue("@Rutcompania", siniestro.RutCompania)
+                cmd.Parameters.AddWithValue("@Rut", siniestro.Rut)
+                cmd.Parameters.AddWithValue("@EstadoSeguro", siniestro.EstadoSeguro)
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function DeleteSiniestro(ByRef id As Integer) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "DELETE FROM siniestro WHERE SiniestroID=@id"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function GetSiniestroFilter(ByRef filtro As Filtros) As List(Of Siniestros)
+        Dim lista As New List(Of Siniestros)
+        Dim rut As String = "AND Rut like @rut"
+        Dim nombre As String = "AND NombreRepuesto like @nombre"
+
+        If String.IsNullOrEmpty(filtro.Rut) Then
+            rut = String.Empty
+        End If
+        If String.IsNullOrEmpty(filtro.Nombre) Then
+            nombre = String.Empty
+        End If
+
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = $"SELECT * FROM siniestro WHERE FechaVenta BETWEEN @fechaD AND @fechaH {rut} {nombre}"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@rut", filtro.Rut & "%")
+                cmd.Parameters.AddWithValue("@nombre", filtro.Nombre & "%")
+                cmd.Parameters.AddWithValue("@fechaD", filtro.FechaD)
+                cmd.Parameters.AddWithValue("@fechaH", filtro.FechaH)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    Dim siniestro As New Siniestros With {
+                        .SiniestroID = Convert.ToInt32(resultado("SiniestroID")),
+                        .Detalle = Convert.ToInt32(resultado("Detalle")),
+                        .EstadoSiniestro = Convert.ToString(resultado("EstadoSiniestro")),
+                        .FechaSiniestro = Convert.ToDateTime(resultado("FechaSiniestro")),
+                        .RutCompania = Convert.ToString(resultado("Rutcompania")),
+                        .EstadoSeguro = Convert.ToInt32(resultado("EstadoSeguro"))
+                      }
+                    lista.Add(siniestro)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
+    End Function
+
 End Module

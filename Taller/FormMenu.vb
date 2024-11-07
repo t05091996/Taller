@@ -24,4 +24,9 @@
         FormLogin.Show()
         Me.Close()
     End Sub
+
+    Private Sub IconButton5_Click(sender As Object, e As EventArgs) Handles IconButton5.Click
+        FormSiniestros.Show()
+        Me.Close()
+    End Sub
 End Class

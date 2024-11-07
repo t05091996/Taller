@@ -1,19 +1,7 @@
 ﻿Public Class FormVentas
     Private Sub txtRut_TextChanged(sender As Object, e As EventArgs) Handles txtRut.TextChanged
         Dim rut As String = txtRut.Text
-        If rut.Length > 8 Then
-            Dim cliente As Cliente = GetClienteByRun(rut)
-            If cliente.Nombre IsNot Nothing Then
-                lblDatos.Text = $"Rut: {cliente.Rut}" & vbNewLine & $"Nombre: {cliente.Nombre}" & vbNewLine & $"{cliente.ApellidoP} {cliente.ApellidoM}"
-            Else
-                Dim msj As Integer = MessageBox.Show("Cliente NO EXISTE!, Desea crearlo?", "ATENCIÓN!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
-                If msj = vbOK Then
-                    FormClientes.Show()
-                End If
-            End If
-        Else
-            lblDatos.Text = String.Empty
-        End If
+        ValidarCliente(rut)
     End Sub
 
     Private Sub FormVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -94,13 +82,13 @@
                     Next
                 End If
                 If overStock Then
-                        'id, fecha, cliente, codigo, repuesto, cantidad, total
-                        dgvProductos.Rows.Add(fila, fecha.ToShortDateString(), cliente, id, producto, cantidad, cantidad * repuesto.Precio)
-                    Else
-                        MessageBox.Show("No hay suficiente stock para este producto", "Atención!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    End If
+                    'id, fecha, cliente, codigo, repuesto, cantidad, total
+                    dgvProductos.Rows.Add(fila, fecha.ToShortDateString(), cliente, id, producto, cantidad, cantidad * repuesto.Precio)
+                Else
+                    MessageBox.Show("No hay suficiente stock para este producto", "Atención!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             End If
+        End If
     End Sub
 
     Private Sub txtCantidad_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCantidad.KeyPress
@@ -161,5 +149,25 @@
         Me.Close()
     End Sub
 
+    Private Sub txtRut_Leave(sender As Object, e As EventArgs) Handles txtRut.Leave
+        Dim rut As String = txtRut.Text
+        ValidarCliente(rut)
+    End Sub
+
+    Sub ValidarCliente(ByRef rut As String)
+        If rut.Length > 8 Then
+            Dim cliente As Cliente = GetClienteByRun(rut)
+            If cliente.Nombre IsNot Nothing Then
+                lblDatos.Text = $"Rut: {cliente.Rut}" & vbNewLine & $"Nombre: {cliente.Nombre}" & vbNewLine & $"{cliente.ApellidoP} {cliente.ApellidoM}"
+            Else
+                Dim msj As Integer = MessageBox.Show("Cliente NO EXISTE!, Desea crearlo?", "ATENCIÓN!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+                If msj = vbOK Then
+                    FormClientes.Show()
+                End If
+            End If
+        Else
+            lblDatos.Text = String.Empty
+        End If
+    End Sub
 
 End Class

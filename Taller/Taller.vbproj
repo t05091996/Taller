@@ -94,12 +94,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\Cliente.vb" />
+    <Compile Include="DTO\Compania.vb" />
     <Compile Include="DTO\Empleado.vb" />
     <Compile Include="DTO\Filtros.vb" />
     <Compile Include="DTO\ModeloCombo.vb" />
     <Compile Include="DTO\Repuestos.vb" />
+    <Compile Include="DTO\Siniestros.vb" />
     <Compile Include="DTO\Usuario.vb" />
     <Compile Include="DTO\VentaRepuestos.vb" />
+    <Compile Include="FormBusquedaSiniestro.Designer.vb">
+      <DependentUpon>FormBusquedaSiniestro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBusquedaSiniestro.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormLogin.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +119,12 @@
       <DependentUpon>FormMenu.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSiniestros.Designer.vb">
+      <DependentUpon>FormSiniestros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSiniestros.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormUsuarios.Designer.vb">
@@ -163,11 +177,17 @@
     <Compile Include="Servicios\Helpers.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormBusquedaSiniestro.resx">
+      <DependentUpon>FormBusquedaSiniestro.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenu.resx">
       <DependentUpon>FormMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSiniestros.resx">
+      <DependentUpon>FormSiniestros.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUsuarios.resx">
       <DependentUpon>FormUsuarios.vb</DependentUpon>
@@ -261,6 +281,9 @@
     <None Include="Resources\146manmechanic2_100581.png" />
     <None Include="Resources\onlineshopping_117952.png" />
     <None Include="Resources\human_employees_management_users_people_group_team_icon_152059.png" />
+    <None Include="Resources\graphmagnifier_118081.png" />
+    <None Include="Resources\data_charts_analysis_charts_icon_182993.png" />
+    <None Include="Resources\transportation_travel_automobile_auto_vehicle_journey_car_icon_229636.png" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\fontawesome\all.min.js" />
     <Content Include="Scripts\fontawesome\brands.js" />
