@@ -616,10 +616,9 @@ Module ConsultasSQL
         Using conexion As New MySqlConnection(ConnectionString)
             Try
                 conexion.Open()
-                Dim query As String = "INSERT INTO siniestro (SiniestroID, Detalle, EstadoSiniestro,FechaSiniestro,Rutcompania,Rut,EstadoSeguro) " &
-                                    "VALUES (@SiniestroID, @Detalle, @EstadoSiniestro, @FechaSiniestro, @Rutcompania , @Rut,@EstadoSeguro)"
+                Dim query As String = "INSERT INTO siniestro (Detalle, Estado_Siniestro,Fecha_Siniestro,RutCompania,Rut,Estado_Seguro) " &
+                                    "VALUES (@Detalle, @EstadoSiniestro, @FechaSiniestro, @Rutcompania , @Rut,@EstadoSeguro)"
                 Dim cmd As New MySqlCommand(query, conexion)
-                cmd.Parameters.AddWithValue("@SiniestroID", siniestro.SiniestroID)
                 cmd.Parameters.AddWithValue("@Detalle", siniestro.Detalle)
                 cmd.Parameters.AddWithValue("@EstadoSiniestro", siniestro.EstadoSiniestro)
                 cmd.Parameters.AddWithValue("@FechaSiniestro", siniestro.FechaSiniestro)
@@ -640,8 +639,8 @@ Module ConsultasSQL
         Using conexion As New MySqlConnection(ConnectionString)
             Try
                 conexion.Open()
-                Dim query As String = "Update siniestro SET Detalle=@Detalle, EstadoSiniestro=@EstadoSiniestro," &
-                                    "Rutcompania=@Rutcompania, Rut=@Rut, EstadoSeguro=@EstadoSeguro " &
+                Dim query As String = "UPDATE siniestro SET Detalle=@Detalle, Estado_Siniestro=@EstadoSiniestro," &
+                                    "RutCompania=@Rutcompania, Rut=@Rut, Estado_Seguro=@EstadoSeguro, Fecha_Siniestro=@FechaSiniestro " &
                                     "WHERE SiniestroID=@SiniestroID"
                 Dim cmd As New MySqlCommand(query, conexion)
                 cmd.Parameters.AddWithValue("@SiniestroID", siniestro.SiniestroID)
@@ -651,10 +650,12 @@ Module ConsultasSQL
                 cmd.Parameters.AddWithValue("@Rutcompania", siniestro.RutCompania)
                 cmd.Parameters.AddWithValue("@Rut", siniestro.Rut)
                 cmd.Parameters.AddWithValue("@EstadoSeguro", siniestro.EstadoSeguro)
+                cmd.ExecuteNonQuery()
                 conexion.Close()
                 Return True
             Catch ex As Exception
                 conexion.Close()
+                Return False
             End Try
         End Using
         Return False
@@ -677,37 +678,37 @@ Module ConsultasSQL
         Return False
     End Function
 
-    Public Function GetSiniestroFilter(ByRef filtro As Filtros) As List(Of Siniestros)
+    Public Function GetSiniestroFilter(ByRef rut As String, ByRef estado As String) As List(Of Siniestros)
         Dim lista As New List(Of Siniestros)
-        Dim rut As String = "AND Rut like @rut"
-        Dim nombre As String = "AND NombreRepuesto like @nombre"
+        Dim query As String = "SELECT * FROM siniestro WHERE Estado_Siniestro=@EstadoSiniestro"
 
-        If String.IsNullOrEmpty(filtro.Rut) Then
-            rut = String.Empty
+        If estado = "Todo" Then
+            query = "SELECT * FROM siniestro"
         End If
-        If String.IsNullOrEmpty(filtro.Nombre) Then
-            nombre = String.Empty
+        If Not String.IsNullOrEmpty(rut) Then
+            query &= " AND Rut like @rut"
+        End If
+        If estado = "Todo" And Not String.IsNullOrEmpty(rut) Then
+            query = "SELECT * FROM siniestro WHERE Rut like @rut"
         End If
 
         Using conexion As New MySqlConnection(ConnectionString)
             Try
                 conexion.Open()
-                Dim query As String = $"SELECT * FROM siniestro WHERE FechaVenta BETWEEN @fechaD AND @fechaH {rut} {nombre}"
                 Dim cmd As New MySqlCommand(query, conexion)
-                cmd.Parameters.AddWithValue("@rut", filtro.Rut & "%")
-                cmd.Parameters.AddWithValue("@nombre", filtro.Nombre & "%")
-                cmd.Parameters.AddWithValue("@fechaD", filtro.FechaD)
-                cmd.Parameters.AddWithValue("@fechaH", filtro.FechaH)
+                cmd.Parameters.AddWithValue("@rut", rut & "%")
+                cmd.Parameters.AddWithValue("@EstadoSiniestro", estado)
                 Dim resultado As MySqlDataReader
                 resultado = cmd.ExecuteReader
                 While (resultado.Read())
                     Dim siniestro As New Siniestros With {
                         .SiniestroID = Convert.ToInt32(resultado("SiniestroID")),
-                        .Detalle = Convert.ToInt32(resultado("Detalle")),
-                        .EstadoSiniestro = Convert.ToString(resultado("EstadoSiniestro")),
-                        .FechaSiniestro = Convert.ToDateTime(resultado("FechaSiniestro")),
-                        .RutCompania = Convert.ToString(resultado("Rutcompania")),
-                        .EstadoSeguro = Convert.ToInt32(resultado("EstadoSeguro"))
+                        .Detalle = Convert.ToString(resultado("Detalle")),
+                        .EstadoSiniestro = Convert.ToString(resultado("Estado_Siniestro")),
+                        .FechaSiniestro = Convert.ToDateTime(resultado("Fecha_Siniestro")),
+                        .RutCompania = Convert.ToString(resultado("RutCompania")),
+                        .EstadoSeguro = Convert.ToString(resultado("Estado_Seguro")),
+                        .Rut = Convert.ToString(resultado("Rut"))
                       }
                     lista.Add(siniestro)
                 End While
@@ -718,5 +719,31 @@ Module ConsultasSQL
         End Using
         Return lista
     End Function
+
+    'crud Compania
+    Public Function GetCompania() As List(Of Compania)
+        Dim lista As New List(Of Compania)
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM compania ORDER BY Descripcion ASC"
+                Dim cmd As New MySqlCommand(query, conexion)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    Dim modelo = New Compania With {
+                        .Rut = Convert.ToString(resultado("Rut")),
+                        .Descripcion = Convert.ToString(resultado("Descripcion"))
+                    }
+                    lista.Add(modelo)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
+    End Function
+
 
 End Module

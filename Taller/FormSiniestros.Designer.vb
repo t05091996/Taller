@@ -30,22 +30,17 @@ Partial Class FormSiniestros
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.txtDetalle = New System.Windows.Forms.TextBox()
         Me.txtRut = New System.Windows.Forms.TextBox()
-        Me.txtRutC = New System.Windows.Forms.TextBox()
-        Me.txtId = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.lblDatosRepuestos = New System.Windows.Forms.Label()
+        Me.cbSiniestro = New System.Windows.Forms.ComboBox()
+        Me.dtFecha = New System.Windows.Forms.DateTimePicker()
         Me.lblDatos = New System.Windows.Forms.Label()
-        Me.BtnEliminar = New FontAwesome.Sharp.IconButton()
-        Me.BtnActualizar = New FontAwesome.Sharp.IconButton()
         Me.BtnCrear = New FontAwesome.Sharp.IconButton()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.cbSeguro = New System.Windows.Forms.ComboBox()
         Me.btnVolver = New FontAwesome.Sharp.IconButton()
         Me.bnLimpiar = New FontAwesome.Sharp.IconButton()
+        Me.cbCompania = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -58,28 +53,31 @@ Partial Class FormSiniestros
         Me.Label1.Size = New System.Drawing.Size(112, 23)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Rut Cliente:"
+        Me.Label1.UseWaitCursor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(25, 229)
+        Me.Label2.Location = New System.Drawing.Point(25, 201)
         Me.Label2.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(137, 23)
+        Me.Label2.Size = New System.Drawing.Size(101, 23)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Rut Compañía:"
+        Me.Label2.Text = "Compañía:"
+        Me.Label2.UseWaitCursor = True
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(25, 325)
+        Me.Label3.Location = New System.Drawing.Point(25, 314)
         Me.Label3.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(176, 23)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Estado de Siniestro:"
+        Me.Label3.UseWaitCursor = True
         '
         'Label4
         '
@@ -91,155 +89,95 @@ Partial Class FormSiniestros
         Me.Label4.Size = New System.Drawing.Size(65, 23)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Fecha:"
+        Me.Label4.UseWaitCursor = True
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Location = New System.Drawing.Point(474, 9)
+        Me.Label5.Location = New System.Drawing.Point(306, 14)
         Me.Label5.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(213, 27)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "Gestión de Siniestros"
+        Me.Label5.UseWaitCursor = True
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(25, 275)
+        Me.Label6.Location = New System.Drawing.Point(25, 253)
         Me.Label6.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(167, 23)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "Estado del Seguro:"
+        Me.Label6.UseWaitCursor = True
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(25, 371)
+        Me.Label7.Location = New System.Drawing.Point(25, 379)
         Me.Label7.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(76, 23)
         Me.Label7.TabIndex = 6
         Me.Label7.Text = "Detalle:"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(23, 421)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(157, 23)
-        Me.Label9.TabIndex = 8
-        Me.Label9.Text = "Código Siniestro:"
+        Me.Label7.UseWaitCursor = True
         '
         'txtDetalle
         '
         Me.txtDetalle.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDetalle.Location = New System.Drawing.Point(211, 365)
+        Me.txtDetalle.Location = New System.Drawing.Point(211, 373)
         Me.txtDetalle.Name = "txtDetalle"
-        Me.txtDetalle.Size = New System.Drawing.Size(247, 29)
+        Me.txtDetalle.Size = New System.Drawing.Size(237, 29)
         Me.txtDetalle.TabIndex = 9
+        Me.txtDetalle.UseWaitCursor = True
         '
         'txtRut
         '
         Me.txtRut.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRut.Location = New System.Drawing.Point(213, 146)
+        Me.txtRut.MaxLength = 9
         Me.txtRut.Name = "txtRut"
-        Me.txtRut.Size = New System.Drawing.Size(247, 29)
+        Me.txtRut.Size = New System.Drawing.Size(235, 29)
         Me.txtRut.TabIndex = 10
+        Me.txtRut.UseWaitCursor = True
         '
-        'txtRutC
+        'cbSiniestro
         '
-        Me.txtRutC.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRutC.Location = New System.Drawing.Point(211, 223)
-        Me.txtRutC.Name = "txtRutC"
-        Me.txtRutC.Size = New System.Drawing.Size(247, 29)
-        Me.txtRutC.TabIndex = 11
+        Me.cbSiniestro.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSiniestro.FormattingEnabled = True
+        Me.cbSiniestro.Items.AddRange(New Object() {"Activo", "Pendiente", "Finalizado"})
+        Me.cbSiniestro.Location = New System.Drawing.Point(211, 311)
+        Me.cbSiniestro.Name = "cbSiniestro"
+        Me.cbSiniestro.Size = New System.Drawing.Size(237, 29)
+        Me.cbSiniestro.TabIndex = 13
+        Me.cbSiniestro.UseWaitCursor = True
         '
-        'txtId
+        'dtFecha
         '
-        Me.txtId.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtId.Location = New System.Drawing.Point(211, 420)
-        Me.txtId.Name = "txtId"
-        Me.txtId.Size = New System.Drawing.Size(247, 29)
-        Me.txtId.TabIndex = 12
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(211, 322)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(247, 29)
-        Me.ComboBox1.TabIndex = 13
-        '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(213, 83)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(247, 32)
-        Me.DateTimePicker1.TabIndex = 14
-        '
-        'lblDatosRepuestos
-        '
-        Me.lblDatosRepuestos.AutoSize = True
-        Me.lblDatosRepuestos.BackColor = System.Drawing.Color.Transparent
-        Me.lblDatosRepuestos.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDatosRepuestos.Location = New System.Drawing.Point(522, 231)
-        Me.lblDatosRepuestos.Name = "lblDatosRepuestos"
-        Me.lblDatosRepuestos.Size = New System.Drawing.Size(283, 21)
-        Me.lblDatosRepuestos.TabIndex = 26
-        Me.lblDatosRepuestos.Text = "jnunuhbnuhbnuhbuh\n iuhyubi8uniun"
+        Me.dtFecha.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtFecha.Location = New System.Drawing.Point(213, 83)
+        Me.dtFecha.Name = "dtFecha"
+        Me.dtFecha.Size = New System.Drawing.Size(142, 32)
+        Me.dtFecha.TabIndex = 14
+        Me.dtFecha.UseWaitCursor = True
         '
         'lblDatos
         '
         Me.lblDatos.AutoSize = True
         Me.lblDatos.BackColor = System.Drawing.Color.Transparent
         Me.lblDatos.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDatos.Location = New System.Drawing.Point(524, 146)
+        Me.lblDatos.Location = New System.Drawing.Point(454, 149)
         Me.lblDatos.Name = "lblDatos"
         Me.lblDatos.Size = New System.Drawing.Size(283, 21)
         Me.lblDatos.TabIndex = 25
         Me.lblDatos.Text = "jnunuhbnuhbnuhbuh\n iuhyubi8uniun"
-        '
-        'BtnEliminar
-        '
-        Me.BtnEliminar.BackColor = System.Drawing.Color.Red
-        Me.BtnEliminar.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnEliminar.IconChar = FontAwesome.Sharp.IconChar.UsersSlash
-        Me.BtnEliminar.IconColor = System.Drawing.Color.Black
-        Me.BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.BtnEliminar.IconSize = 30
-        Me.BtnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnEliminar.Location = New System.Drawing.Point(291, 589)
-        Me.BtnEliminar.Name = "BtnEliminar"
-        Me.BtnEliminar.Size = New System.Drawing.Size(146, 50)
-        Me.BtnEliminar.TabIndex = 30
-        Me.BtnEliminar.Text = "Eliminar"
-        Me.BtnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnEliminar.UseVisualStyleBackColor = False
-        '
-        'BtnActualizar
-        '
-        Me.BtnActualizar.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnActualizar.IconChar = FontAwesome.Sharp.IconChar.UsersGear
-        Me.BtnActualizar.IconColor = System.Drawing.Color.Black
-        Me.BtnActualizar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.BtnActualizar.IconSize = 30
-        Me.BtnActualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnActualizar.Location = New System.Drawing.Point(31, 589)
-        Me.BtnActualizar.Name = "BtnActualizar"
-        Me.BtnActualizar.Size = New System.Drawing.Size(143, 50)
-        Me.BtnActualizar.TabIndex = 29
-        Me.BtnActualizar.Text = "Actualizar"
-        Me.BtnActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnActualizar.UseVisualStyleBackColor = True
+        Me.lblDatos.UseWaitCursor = True
         '
         'BtnCrear
         '
@@ -249,13 +187,14 @@ Partial Class FormSiniestros
         Me.BtnCrear.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.BtnCrear.IconSize = 25
         Me.BtnCrear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtnCrear.Location = New System.Drawing.Point(31, 512)
+        Me.BtnCrear.Location = New System.Drawing.Point(29, 435)
         Me.BtnCrear.Name = "BtnCrear"
         Me.BtnCrear.Size = New System.Drawing.Size(143, 50)
         Me.BtnCrear.TabIndex = 27
         Me.BtnCrear.Text = "Crear"
         Me.BtnCrear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnCrear.UseVisualStyleBackColor = True
+        Me.BtnCrear.UseWaitCursor = True
         '
         'IconButton1
         '
@@ -265,22 +204,25 @@ Partial Class FormSiniestros
         Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton1.IconSize = 30
         Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.IconButton1.Location = New System.Drawing.Point(797, 9)
+        Me.IconButton1.Location = New System.Drawing.Point(629, 9)
         Me.IconButton1.Name = "IconButton1"
         Me.IconButton1.Size = New System.Drawing.Size(196, 40)
         Me.IconButton1.TabIndex = 31
         Me.IconButton1.Text = "Búsqueda Avanzada"
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.IconButton1.UseVisualStyleBackColor = True
+        Me.IconButton1.UseWaitCursor = True
         '
-        'ComboBox2
+        'cbSeguro
         '
-        Me.ComboBox2.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(211, 272)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(247, 29)
-        Me.ComboBox2.TabIndex = 32
+        Me.cbSeguro.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbSeguro.FormattingEnabled = True
+        Me.cbSeguro.Items.AddRange(New Object() {"Vigente", "Caducado"})
+        Me.cbSeguro.Location = New System.Drawing.Point(211, 250)
+        Me.cbSeguro.Name = "cbSeguro"
+        Me.cbSeguro.Size = New System.Drawing.Size(237, 29)
+        Me.cbSeguro.TabIndex = 32
+        Me.cbSeguro.UseWaitCursor = True
         '
         'btnVolver
         '
@@ -297,6 +239,7 @@ Partial Class FormSiniestros
         Me.btnVolver.Text = "Menú Principal"
         Me.btnVolver.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnVolver.UseVisualStyleBackColor = True
+        Me.btnVolver.UseWaitCursor = True
         '
         'bnLimpiar
         '
@@ -305,13 +248,25 @@ Partial Class FormSiniestros
         Me.bnLimpiar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.bnLimpiar.IconSize = 40
         Me.bnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.bnLimpiar.Location = New System.Drawing.Point(291, 512)
+        Me.bnLimpiar.Location = New System.Drawing.Point(289, 435)
         Me.bnLimpiar.Name = "bnLimpiar"
         Me.bnLimpiar.Size = New System.Drawing.Size(144, 50)
         Me.bnLimpiar.TabIndex = 34
         Me.bnLimpiar.Text = "Limpiar"
         Me.bnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.bnLimpiar.UseVisualStyleBackColor = True
+        Me.bnLimpiar.UseWaitCursor = True
+        '
+        'cbCompania
+        '
+        Me.cbCompania.DropDownWidth = 710
+        Me.cbCompania.Font = New System.Drawing.Font("Times New Roman", 14.25!)
+        Me.cbCompania.FormattingEnabled = True
+        Me.cbCompania.Location = New System.Drawing.Point(211, 195)
+        Me.cbCompania.Name = "cbCompania"
+        Me.cbCompania.Size = New System.Drawing.Size(308, 29)
+        Me.cbCompania.TabIndex = 35
+        Me.cbCompania.UseWaitCursor = True
         '
         'FormSiniestros
         '
@@ -319,23 +274,18 @@ Partial Class FormSiniestros
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Taller.My.Resources.Resources.graphmagnifier_118081
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(1005, 653)
+        Me.ClientSize = New System.Drawing.Size(829, 518)
+        Me.Controls.Add(Me.cbCompania)
         Me.Controls.Add(Me.bnLimpiar)
         Me.Controls.Add(Me.btnVolver)
-        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.cbSeguro)
         Me.Controls.Add(Me.IconButton1)
-        Me.Controls.Add(Me.BtnEliminar)
-        Me.Controls.Add(Me.BtnActualizar)
         Me.Controls.Add(Me.BtnCrear)
-        Me.Controls.Add(Me.lblDatosRepuestos)
         Me.Controls.Add(Me.lblDatos)
-        Me.Controls.Add(Me.DateTimePicker1)
-        Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.txtId)
-        Me.Controls.Add(Me.txtRutC)
+        Me.Controls.Add(Me.dtFecha)
+        Me.Controls.Add(Me.cbSiniestro)
         Me.Controls.Add(Me.txtRut)
         Me.Controls.Add(Me.txtDetalle)
-        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -348,8 +298,12 @@ Partial Class FormSiniestros
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormSiniestros"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Gestión de Siniestros"
+        Me.UseWaitCursor = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -362,20 +316,15 @@ Partial Class FormSiniestros
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
-    Friend WithEvents Label9 As Label
     Friend WithEvents txtDetalle As TextBox
     Friend WithEvents txtRut As TextBox
-    Friend WithEvents txtRutC As TextBox
-    Friend WithEvents txtId As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents lblDatosRepuestos As Label
+    Friend WithEvents cbSiniestro As ComboBox
+    Friend WithEvents dtFecha As DateTimePicker
     Friend WithEvents lblDatos As Label
-    Friend WithEvents BtnEliminar As FontAwesome.Sharp.IconButton
-    Friend WithEvents BtnActualizar As FontAwesome.Sharp.IconButton
     Friend WithEvents BtnCrear As FontAwesome.Sharp.IconButton
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents cbSeguro As ComboBox
     Friend WithEvents btnVolver As FontAwesome.Sharp.IconButton
     Friend WithEvents bnLimpiar As FontAwesome.Sharp.IconButton
+    Friend WithEvents cbCompania As ComboBox
 End Class

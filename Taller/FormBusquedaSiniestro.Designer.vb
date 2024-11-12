@@ -24,13 +24,22 @@ Partial Class FormBusquedaSiniestro
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBusquedaSiniestro))
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.txtRut = New System.Windows.Forms.TextBox()
+        Me.dgvSiniestro = New System.Windows.Forms.DataGridView()
+        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Detalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.siniestro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Nombre_Cliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rut_Compania = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Estado_Seguro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnVolver = New FontAwesome.Sharp.IconButton()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cbEstado = New System.Windows.Forms.ComboBox()
         Me.btnBuscar = New FontAwesome.Sharp.IconButton()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.BtnEliminar = New FontAwesome.Sharp.IconButton()
+        Me.btnModificar = New FontAwesome.Sharp.IconButton()
+        CType(Me.dgvSiniestro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -43,23 +52,62 @@ Partial Class FormBusquedaSiniestro
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "RUT Cliente:"
         '
-        'TextBox1
+        'txtRut
         '
-        Me.TextBox1.Location = New System.Drawing.Point(12, 124)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(204, 26)
-        Me.TextBox1.TabIndex = 3
+        Me.txtRut.Location = New System.Drawing.Point(12, 124)
+        Me.txtRut.Name = "txtRut"
+        Me.txtRut.Size = New System.Drawing.Size(204, 26)
+        Me.txtRut.TabIndex = 3
         '
-        'DataGridView1
+        'dgvSiniestro
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 185)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(949, 238)
-        Me.DataGridView1.TabIndex = 6
+        Me.dgvSiniestro.AllowUserToAddRows = False
+        Me.dgvSiniestro.AllowUserToDeleteRows = False
+        Me.dgvSiniestro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvSiniestro.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Fecha, Me.Detalle, Me.siniestro, Me.Nombre_Cliente, Me.Rut_Compania, Me.Estado_Seguro})
+        Me.dgvSiniestro.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke
+        Me.dgvSiniestro.Location = New System.Drawing.Point(10, 178)
+        Me.dgvSiniestro.Name = "dgvSiniestro"
+        Me.dgvSiniestro.Size = New System.Drawing.Size(949, 238)
+        Me.dgvSiniestro.TabIndex = 6
+        '
+        'Id
+        '
+        Me.Id.HeaderText = "#"
+        Me.Id.Name = "Id"
+        Me.Id.Width = 50
+        '
+        'Fecha
+        '
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.Name = "Fecha"
+        '
+        'Detalle
+        '
+        Me.Detalle.HeaderText = "Descripción"
+        Me.Detalle.Name = "Detalle"
+        Me.Detalle.Width = 250
+        '
+        'siniestro
+        '
+        Me.siniestro.HeaderText = "Estado "
+        Me.siniestro.Name = "siniestro"
+        '
+        'Nombre_Cliente
+        '
+        Me.Nombre_Cliente.HeaderText = "Cliente"
+        Me.Nombre_Cliente.Name = "Nombre_Cliente"
+        '
+        'Rut_Compania
+        '
+        Me.Rut_Compania.HeaderText = "Compañia"
+        Me.Rut_Compania.Name = "Rut_Compania"
+        '
+        'Estado_Seguro
+        '
+        Me.Estado_Seguro.HeaderText = "Seguro"
+        Me.Estado_Seguro.Name = "Estado_Seguro"
+        Me.Estado_Seguro.Width = 200
         '
         'btnVolver
         '
@@ -83,17 +131,18 @@ Partial Class FormBusquedaSiniestro
         Me.Label2.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(238, 97)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(73, 23)
+        Me.Label2.Size = New System.Drawing.Size(152, 23)
         Me.Label2.TabIndex = 35
-        Me.Label2.Text = "Estado:"
+        Me.Label2.Text = "Estado Siniestro:"
         '
-        'ComboBox1
+        'cbEstado
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(242, 123)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(204, 27)
-        Me.ComboBox1.TabIndex = 36
+        Me.cbEstado.FormattingEnabled = True
+        Me.cbEstado.Items.AddRange(New Object() {"Todo", "Activo", "Pendiente", "Finalizado"})
+        Me.cbEstado.Location = New System.Drawing.Point(242, 123)
+        Me.cbEstado.Name = "cbEstado"
+        Me.cbEstado.Size = New System.Drawing.Size(204, 27)
+        Me.cbEstado.TabIndex = 36
         '
         'btnBuscar
         '
@@ -111,34 +160,86 @@ Partial Class FormBusquedaSiniestro
         Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnBuscar.UseVisualStyleBackColor = True
         '
+        'BtnEliminar
+        '
+        Me.BtnEliminar.BackColor = System.Drawing.Color.Red
+        Me.BtnEliminar.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnEliminar.IconChar = FontAwesome.Sharp.IconChar.UsersSlash
+        Me.BtnEliminar.IconColor = System.Drawing.Color.Black
+        Me.BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BtnEliminar.IconSize = 30
+        Me.BtnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnEliminar.Location = New System.Drawing.Point(526, 455)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.Size = New System.Drawing.Size(146, 50)
+        Me.BtnEliminar.TabIndex = 38
+        Me.BtnEliminar.Text = "Eliminar"
+        Me.BtnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnEliminar.UseVisualStyleBackColor = False
+        '
+        'btnModificar
+        '
+        Me.btnModificar.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnModificar.IconChar = FontAwesome.Sharp.IconChar.Gears
+        Me.btnModificar.IconColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.btnModificar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnModificar.IconSize = 40
+        Me.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnModificar.Location = New System.Drawing.Point(199, 456)
+        Me.btnModificar.Name = "btnModificar"
+        Me.btnModificar.Size = New System.Drawing.Size(139, 50)
+        Me.btnModificar.TabIndex = 39
+        Me.btnModificar.Text = "Actualizar"
+        Me.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnModificar.UseVisualStyleBackColor = True
+        '
         'FormBusquedaSiniestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(985, 446)
+        Me.BackgroundImage = Global.Taller.My.Resources.Resources.magnifier_and_car_icon_icons_com_71919
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.ClientSize = New System.Drawing.Size(971, 544)
+        Me.Controls.Add(Me.btnModificar)
+        Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.btnBuscar)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.cbEstado)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnVolver)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.dgvSiniestro)
+        Me.Controls.Add(Me.txtRut)
         Me.Controls.Add(Me.Label1)
+        Me.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormBusquedaSiniestro"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Búsqueda Avanzada"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvSiniestro, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents txtRut As TextBox
+    Friend WithEvents dgvSiniestro As DataGridView
     Friend WithEvents btnVolver As FontAwesome.Sharp.IconButton
     Friend WithEvents Label2 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cbEstado As ComboBox
     Friend WithEvents btnBuscar As FontAwesome.Sharp.IconButton
+    Friend WithEvents BtnEliminar As FontAwesome.Sharp.IconButton
+    Friend WithEvents btnModificar As FontAwesome.Sharp.IconButton
+    Friend WithEvents Id As DataGridViewTextBoxColumn
+    Friend WithEvents Fecha As DataGridViewTextBoxColumn
+    Friend WithEvents Detalle As DataGridViewTextBoxColumn
+    Friend WithEvents siniestro As DataGridViewTextBoxColumn
+    Friend WithEvents Nombre_Cliente As DataGridViewTextBoxColumn
+    Friend WithEvents Rut_Compania As DataGridViewTextBoxColumn
+    Friend WithEvents Estado_Seguro As DataGridViewTextBoxColumn
 End Class

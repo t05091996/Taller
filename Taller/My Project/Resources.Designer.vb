@@ -193,6 +193,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property magnifier_and_car_icon_icons_com_71919() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("magnifier_and_car_icon-icons.com_71919", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property mechanic_car_icon_214777() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("mechanic_car_icon_214777", resourceCulture)
