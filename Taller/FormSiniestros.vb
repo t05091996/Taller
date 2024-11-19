@@ -44,9 +44,9 @@
     End Function
 
     Private Sub BtnCrear_Click(sender As Object, e As EventArgs) Handles BtnCrear.Click
-        If ValidarVacio(Me) Then
-            If ValidarVacio(Me) Then
-                Dim siniestro = New Siniestros With {
+
+        If ValidarTxtComboDateTime(Me) Then
+            Dim siniestro = New Siniestros With {
                             .Rut = txtRut.Text,
                             .RutCompania = cbCompania.SelectedValue,
                             .EstadoSeguro = cbSeguro.SelectedItem,
@@ -54,13 +54,11 @@
                             .FechaSiniestro = dtFecha.Value,
                             .Detalle = txtDetalle.Text
                         }
-                If CreateSiniestro(siniestro) Then
-                    MessageBox.Show("Se ha creado correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("NO se ha podido crear el siniestro", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+            If CreateSiniestro(siniestro) Then
+                MessageBox.Show("Se ha creado correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("NO se ha podido crear el siniestro", "ATENCIÓN!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
-
         End If
     End Sub
 

@@ -53,7 +53,6 @@ Partial Class FormSiniestros
         Me.Label1.Size = New System.Drawing.Size(112, 23)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Rut Cliente:"
-        Me.Label1.UseWaitCursor = True
         '
         'Label2
         '
@@ -65,7 +64,6 @@ Partial Class FormSiniestros
         Me.Label2.Size = New System.Drawing.Size(101, 23)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Compañía:"
-        Me.Label2.UseWaitCursor = True
         '
         'Label3
         '
@@ -77,7 +75,6 @@ Partial Class FormSiniestros
         Me.Label3.Size = New System.Drawing.Size(176, 23)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Estado de Siniestro:"
-        Me.Label3.UseWaitCursor = True
         '
         'Label4
         '
@@ -89,7 +86,6 @@ Partial Class FormSiniestros
         Me.Label4.Size = New System.Drawing.Size(65, 23)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Fecha:"
-        Me.Label4.UseWaitCursor = True
         '
         'Label5
         '
@@ -101,7 +97,6 @@ Partial Class FormSiniestros
         Me.Label5.Size = New System.Drawing.Size(213, 27)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "Gestión de Siniestros"
-        Me.Label5.UseWaitCursor = True
         '
         'Label6
         '
@@ -113,7 +108,6 @@ Partial Class FormSiniestros
         Me.Label6.Size = New System.Drawing.Size(167, 23)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "Estado del Seguro:"
-        Me.Label6.UseWaitCursor = True
         '
         'Label7
         '
@@ -125,7 +119,6 @@ Partial Class FormSiniestros
         Me.Label7.Size = New System.Drawing.Size(76, 23)
         Me.Label7.TabIndex = 6
         Me.Label7.Text = "Detalle:"
-        Me.Label7.UseWaitCursor = True
         '
         'txtDetalle
         '
@@ -134,7 +127,6 @@ Partial Class FormSiniestros
         Me.txtDetalle.Name = "txtDetalle"
         Me.txtDetalle.Size = New System.Drawing.Size(237, 29)
         Me.txtDetalle.TabIndex = 9
-        Me.txtDetalle.UseWaitCursor = True
         '
         'txtRut
         '
@@ -144,7 +136,6 @@ Partial Class FormSiniestros
         Me.txtRut.Name = "txtRut"
         Me.txtRut.Size = New System.Drawing.Size(235, 29)
         Me.txtRut.TabIndex = 10
-        Me.txtRut.UseWaitCursor = True
         '
         'cbSiniestro
         '
@@ -155,7 +146,6 @@ Partial Class FormSiniestros
         Me.cbSiniestro.Name = "cbSiniestro"
         Me.cbSiniestro.Size = New System.Drawing.Size(237, 29)
         Me.cbSiniestro.TabIndex = 13
-        Me.cbSiniestro.UseWaitCursor = True
         '
         'dtFecha
         '
@@ -165,7 +155,6 @@ Partial Class FormSiniestros
         Me.dtFecha.Name = "dtFecha"
         Me.dtFecha.Size = New System.Drawing.Size(142, 32)
         Me.dtFecha.TabIndex = 14
-        Me.dtFecha.UseWaitCursor = True
         '
         'lblDatos
         '
@@ -177,7 +166,6 @@ Partial Class FormSiniestros
         Me.lblDatos.Size = New System.Drawing.Size(283, 21)
         Me.lblDatos.TabIndex = 25
         Me.lblDatos.Text = "jnunuhbnuhbnuhbuh\n iuhyubi8uniun"
-        Me.lblDatos.UseWaitCursor = True
         '
         'BtnCrear
         '
@@ -194,7 +182,6 @@ Partial Class FormSiniestros
         Me.BtnCrear.Text = "Crear"
         Me.BtnCrear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnCrear.UseVisualStyleBackColor = True
-        Me.BtnCrear.UseWaitCursor = True
         '
         'IconButton1
         '
@@ -211,7 +198,6 @@ Partial Class FormSiniestros
         Me.IconButton1.Text = "Búsqueda Avanzada"
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.IconButton1.UseVisualStyleBackColor = True
-        Me.IconButton1.UseWaitCursor = True
         '
         'cbSeguro
         '
@@ -222,7 +208,6 @@ Partial Class FormSiniestros
         Me.cbSeguro.Name = "cbSeguro"
         Me.cbSeguro.Size = New System.Drawing.Size(237, 29)
         Me.cbSeguro.TabIndex = 32
-        Me.cbSeguro.UseWaitCursor = True
         '
         'btnVolver
         '
@@ -239,7 +224,6 @@ Partial Class FormSiniestros
         Me.btnVolver.Text = "Menú Principal"
         Me.btnVolver.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnVolver.UseVisualStyleBackColor = True
-        Me.btnVolver.UseWaitCursor = True
         '
         'bnLimpiar
         '
@@ -255,7 +239,6 @@ Partial Class FormSiniestros
         Me.bnLimpiar.Text = "Limpiar"
         Me.bnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.bnLimpiar.UseVisualStyleBackColor = True
-        Me.bnLimpiar.UseWaitCursor = True
         '
         'cbCompania
         '
@@ -266,7 +249,6 @@ Partial Class FormSiniestros
         Me.cbCompania.Name = "cbCompania"
         Me.cbCompania.Size = New System.Drawing.Size(308, 29)
         Me.cbCompania.TabIndex = 35
-        Me.cbCompania.UseWaitCursor = True
         '
         'FormSiniestros
         '
@@ -293,9 +275,10 @@ Partial Class FormSiniestros
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.Cursor = System.Windows.Forms.Cursors.Hand
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Times New Roman", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.MaximizeBox = False
@@ -303,7 +286,6 @@ Partial Class FormSiniestros
         Me.Name = "FormSiniestros"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Gestión de Siniestros"
-        Me.UseWaitCursor = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

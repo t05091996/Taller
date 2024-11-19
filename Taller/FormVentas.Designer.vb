@@ -310,8 +310,11 @@ Partial Class FormVentas
         Me.Controls.Add(Me.Label)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(5)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormVentas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Gestión de Ventas de Repuestos"

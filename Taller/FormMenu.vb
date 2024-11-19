@@ -29,4 +29,9 @@
         FormSiniestros.Show()
         Me.Close()
     End Sub
+
+    Private Sub IconButton4_Click(sender As Object, e As EventArgs) Handles IconButton4.Click
+        FormSolicitudSiniestro.Show()
+        Me.Close()
+    End Sub
 End Class

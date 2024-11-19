@@ -21,4 +21,9 @@
         txtFechaD.Value = Date.Now.AddYears(-1)
         txtFechaH.Value = Date.Now
     End Sub
+
+    Private Sub btnVolver_Click(sender As Object, e As EventArgs) Handles btnVolver.Click
+        FormVentas.Show()
+        Me.Close()
+    End Sub
 End Class

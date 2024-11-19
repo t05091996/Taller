@@ -166,7 +166,7 @@ Partial Class FormInventario
         '
         'btnBuscar
         '
-        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassArrowRight
+        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Searchengin
         Me.btnBuscar.IconColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.btnBuscar.IconSize = 40
@@ -219,9 +219,10 @@ Partial Class FormInventario
         '
         'btnLimpiar
         '
-        Me.btnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Tarp
+        Me.btnLimpiar.IconChar = FontAwesome.Sharp.IconChar.Broom
         Me.btnLimpiar.IconColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.btnLimpiar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnLimpiar.IconSize = 45
         Me.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnLimpiar.Location = New System.Drawing.Point(634, 330)
         Me.btnLimpiar.Name = "btnLimpiar"
@@ -287,7 +288,7 @@ Partial Class FormInventario
         Me.Cursor = System.Windows.Forms.Cursors.Hand
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.MaximizeBox = False

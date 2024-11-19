@@ -168,7 +168,11 @@ Module ConsultasSQL
     End Function
 
     Public Function VerificarUsuario(RUT As String, PASS As String) As Boolean
-        Dim aprobado = False
+        'public: accesibilidad [public, private, static]
+        'function VerificarUsuario: declaro que es una funcion y le doy su nombre (veirficar usuario)
+        '(rut as string, pass as string): valores de entrada de la funcion y su respectivo tipo [String] 
+        'as Boolean: valor devolucion de la funcion 
+        Dim respuesta = False
         Using conexion As New MySqlConnection(ConnectionString)
             Try
                 conexion.Open()
@@ -179,11 +183,11 @@ Module ConsultasSQL
                 Dim resultado As MySqlDataReader
                 resultado = cmd.ExecuteReader
                 While (resultado.Read())
-                    aprobado = True
+                    respuesta = True 'si el usuario existe, esta funcion devolvera TRUE
+                    'dar valor a las propiedades de configuracion dinamicas de la solucion, estas pueden tener acceso desde cualquier formulario de la aplicacion
                     My.Settings.Run = RUT
                     My.Settings.TipoUsuario = Convert.ToString(resultado("Tipo"))
                     My.Settings.Correo = Convert.ToString(resultado("Correo"))
-
                 End While
                 conexion.Close()
             Catch ex As Exception
@@ -191,7 +195,7 @@ Module ConsultasSQL
             End Try
         End Using
 
-        Return aprobado
+        Return respuesta
     End Function
 
     'crud producto
@@ -736,6 +740,243 @@ Module ConsultasSQL
                         .Descripcion = Convert.ToString(resultado("Descripcion"))
                     }
                     lista.Add(modelo)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
+    End Function
+
+    'crud Solicitud
+    Public Function CreateSolicitud(ByRef solicitud As Solicitud) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                'los datos ingresados acá deben ser los mismo titulos de las columnas de la tabla
+                Dim query As String = "INSERT INTO solicitudesservicio (Rut, FechaSolicitud, DescripcionProblema,Estado, Siniestroid,RutEmpleado) " &
+                                    "VALUES (@Rut, @FechaSolicitud, @DescripcionProblema, @Estado , @Siniestroid,@RutEmpleado)"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@Rut", solicitud.Rut)
+                cmd.Parameters.AddWithValue("@FechaSolicitud", solicitud.FechaSolicitud)
+                cmd.Parameters.AddWithValue("@DescripcionProblema", solicitud.DescripcionProblema)
+                cmd.Parameters.AddWithValue("@Estado", solicitud.Estado)
+                cmd.Parameters.AddWithValue("@Siniestroid", solicitud.Siniestroid)
+                cmd.Parameters.AddWithValue("@RutEmpleado", solicitud.RutEmpleado)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function UpdateSolicitud(ByRef solicitud As Solicitud) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "UPDATE solicitudesservicio SET Rut=@Rut, FechaSolicitud=@FechaSolicitud," &
+                                    "DescripcionProblema=@DescripcionProblema, Estado=@Estado, Siniestroid=@Siniestroid, RutEmpleado=@RutEmpleado " &
+                                    "WHERE SolicitudID=@SolicitudID"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@SolicitudID", solicitud.SolicitudID)
+                cmd.Parameters.AddWithValue("@Rut", solicitud.Rut)
+                cmd.Parameters.AddWithValue("@FechaSolicitud", solicitud.FechaSolicitud)
+                cmd.Parameters.AddWithValue("@DescripcionProblema", solicitud.DescripcionProblema)
+                cmd.Parameters.AddWithValue("@Estado", solicitud.Estado)
+                cmd.Parameters.AddWithValue("@Siniestroid", solicitud.Siniestroid)
+                cmd.Parameters.AddWithValue("@RutEmpleado", solicitud.RutEmpleado)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+                Return False
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function DeleteSolicitud(ByRef id As Integer) As Boolean
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "DELETE FROM solicitudesservicio WHERE SolicitudID=@id"
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                cmd.ExecuteNonQuery()
+                conexion.Close()
+                Return True
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return False
+    End Function
+
+    Public Function GetSolicitudFilter(ByRef nombre As String, ByRef estado As String) As List(Of ModuloSolicitud)
+        Dim lista As New List(Of ModuloSolicitud)
+        Dim query As String = "Select s.SiniestroID, s.Detalle, s.Estado_Siniestro, s.Fecha_Siniestro, s.RutCompania, s.Estado_Seguro,
+        c.Rut, concat(c.Nombre,' ', c.ApellidoP,' ', c.ApellidoM) as NombreCliente, ss.SolicitudID,
+        ss.FechaSolicitud, ss.DescripcionProblema, ss.Estado, cp.Descripcion as NombreCompania
+        FROM siniestro as s inner join clientes as c on s.Rut = c.Rut
+        inner join solicitudesservicio as ss on c.Rut = ss.Rut inner join compania as cp on s.RutCompania = cp.Rut
+        WHERE concat_ws(' ',c.Nombre,c.ApellidoP,c.ApellidoM) like @nombre"
+
+        If estado <> "todo" Then
+            query &= " And ss.Estado=@estado"
+        End If
+        If String.IsNullOrEmpty(nombre) And estado = "Todo" Then
+            query = query.Replace("WHERE concat_ws(' ',c.Nombre,c.ApellidoP,c.ApellidoM) like @nombre", String.Empty).Replace("And ss.Estado=@estado", String.Empty)
+        ElseIf estado = "Todo" Then
+            query = query.Replace("And ss.Estado=@estado", String.Empty)
+        End If
+
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@nombre", "%" & nombre & "%")
+                cmd.Parameters.AddWithValue("@estado", estado)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    'SiniestroID, Detalle, Estado_Siniestro, Fecha_Siniestro, RutCompania, Estado_Seguro, Rut, NombreCliente,
+                    'SolicitudID, FechaSolicitud, DescripcionProblema, estado, NombreCompania
+                    Dim modelo = New ModuloSolicitud With {
+                        .RutCliente = Convert.ToString(resultado("Rut")),
+                        .NombreCliente = Convert.ToString(resultado("NombreCliente")),
+                        .RutCompania = Convert.ToString(resultado("RutCompania")),
+                        .NombreCompania = Convert.ToString(resultado("NombreCompania")),
+                        .DescripcionProblema = Convert.ToString(resultado("DescripcionProblema")),
+                        .Detalle = Convert.ToString(resultado("Detalle")),
+                        .SiniestroID = Convert.ToInt32(resultado("SiniestroID")),
+                        .SolicitudID = Convert.ToInt32(resultado("SolicitudID")),
+                        .EstadoSeguro = Convert.ToString(resultado("Estado_Seguro")),
+                        .EstadoSiniestro = Convert.ToString(resultado("Estado_Siniestro")),
+                        .FechaSiniestro = Convert.ToDateTime(resultado("Fecha_Siniestro")),
+                        .FechaSolicitud = Convert.ToDateTime(resultado("FechaSolicitud")),
+                        .RutEmpleado = Convert.ToString(resultado("Rut")),
+                        .Estado = Convert.ToString(resultado("Estado"))
+                    }
+                    lista.Add(modelo)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
+    End Function
+
+    Public Function GetSiniestros() As List(Of Siniestros)
+        Dim lista As New List(Of Siniestros)
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim query As String = "SELECT * FROM siniestro ORDER BY Detalle ASC"
+                Dim cmd As New MySqlCommand(query, conexion)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    Dim modelo = New Siniestros With {
+                        .SiniestroID = Convert.ToInt32(resultado("SiniestroID")),
+                        .Detalle = Convert.ToString(resultado("Detalle")),
+                        .EstadoSiniestro = Convert.ToString(resultado("Estado_Siniestro")),
+                        .FechaSiniestro = Convert.ToDateTime(resultado("Fecha_Siniestro")),
+                        .RutCompania = Convert.ToString(resultado("RutCompania")),
+                        .Rut = Convert.ToString(resultado("Rut")),
+                        .EstadoSeguro = Convert.ToString(resultado("Estado_Seguro"))
+                    }
+                    lista.Add(modelo)
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return lista
+    End Function
+
+    Public Function GetSolicitud(ByRef id As Integer) As ModuloSolicitud
+        Dim query As String = "Select s.SiniestroID, s.Detalle, s.Estado_Siniestro, s.Fecha_Siniestro, s.RutCompania, s.Estado_Seguro,
+        c.Rut, concat(c.Nombre,' ', c.ApellidoP,' ', c.ApellidoM) as NombreCliente, cp.Descripcion as NombreCompania
+        FROM siniestro as s inner join clientes as c on s.Rut = c.Rut inner join compania as cp on s.RutCompania = cp.Rut
+        WHERE s.SiniestroID=@id"
+        Dim modelo As New ModuloSolicitud()
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    modelo.RutCliente = Convert.ToString(resultado("Rut"))
+                    modelo.NombreCliente = Convert.ToString(resultado("NombreCliente"))
+                    modelo.RutCompania = Convert.ToString(resultado("RutCompania"))
+                    modelo.NombreCompania = Convert.ToString(resultado("NombreCompania"))
+                    modelo.Detalle = Convert.ToString(resultado("Detalle"))
+                    modelo.SiniestroID = Convert.ToInt32(resultado("SiniestroID"))
+                    modelo.EstadoSeguro = Convert.ToString(resultado("Estado_Seguro"))
+                    modelo.EstadoSiniestro = Convert.ToString(resultado("Estado_Siniestro"))
+                    modelo.FechaSiniestro = Convert.ToDateTime(resultado("Fecha_Siniestro"))
+                    modelo.RutEmpleado = Convert.ToString(resultado("Rut"))
+                End While
+                conexion.Close()
+            Catch ex As Exception
+                conexion.Close()
+            End Try
+        End Using
+        Return modelo
+    End Function
+
+    Public Function GetSolicitudByID(ByRef id As Integer) As ModuloSolicitud
+        'ByRef: hace refencia a que el valor de variable puede cambiar EJ: id=1 cuando entra y en cualquier momento id=5 o id=7
+        'ByVal: hace refencia a que el valor de la variable NO puede cambiar si id= 6 siempre id=6
+        'busco los siguientes valores en un [Select s.SiniestroID, s.Detalle, s.Estado_Siniestro, s.Fecha_Siniestro, s.RutCompania, s.Estado_Seguro,
+        'c.Rut, concat(c.Nombre,' ', c.ApellidoP,' ', c.ApellidoM) as NombreCliente, ss.SolicitudID,
+        'ss.FechaSolicitud, ss.DescripcionProblema, ss.Estado, cp.Descripcion as NombreCompania]
+        'de las siguientes tablas unidas por RutCliente y RutCompania, segun corresponda[FROM siniestro as s inner join clientes as c on s.Rut = c.Rut
+        'inner join solicitudesservicio as ss on c.Rut = ss.Rut inner join compania as cp on s.RutCompania = cp.Rut]
+        '(siniestro = s, clientes= c, solicitudesservicio= ss)
+        'donde la solicitudesservicio = solicitudID [WHERE ss.SolicitudID=@id] 
+        Dim lista As New ModuloSolicitud()
+        Dim query As String = "Select s.SiniestroID, s.Detalle, s.Estado_Siniestro, s.Fecha_Siniestro, s.RutCompania, s.Estado_Seguro,
+        c.Rut, concat(c.Nombre,' ', c.ApellidoP,' ', c.ApellidoM) as NombreCliente, ss.SolicitudID,
+        ss.FechaSolicitud, ss.DescripcionProblema, ss.Estado, cp.Descripcion as NombreCompania
+        FROM siniestro as s inner join clientes as c on s.Rut = c.Rut
+        inner join solicitudesservicio as ss on c.Rut = ss.Rut inner join compania as cp on s.RutCompania = cp.Rut
+        WHERE ss.SolicitudID=@id" ' sentecia sql, que devuelve todos los campos del select(consulta)
+
+        Using conexion As New MySqlConnection(ConnectionString)
+            Try
+                conexion.Open()
+                Dim cmd As New MySqlCommand(query, conexion)
+                cmd.Parameters.AddWithValue("@id", id)
+                Dim resultado As MySqlDataReader
+                resultado = cmd.ExecuteReader
+                While (resultado.Read())
+                    'SiniestroID, Detalle, Estado_Siniestro, Fecha_Siniestro, RutCompania, Estado_Seguro, Rut, NombreCliente,
+                    'SolicitudID, FechaSolicitud, DescripcionProblema, estado, NombreCompania
+                    lista.RutCliente = Convert.ToString(resultado("Rut"))
+                    lista.NombreCliente = Convert.ToString(resultado("NombreCliente"))
+                    lista.RutCompania = Convert.ToString(resultado("RutCompania"))
+                    lista.NombreCompania = Convert.ToString(resultado("NombreCompania"))
+                    lista.DescripcionProblema = Convert.ToString(resultado("DescripcionProblema"))
+                    lista.Detalle = Convert.ToString(resultado("Detalle"))
+                    lista.SiniestroID = Convert.ToInt32(resultado("SiniestroID"))
+                    lista.SolicitudID = Convert.ToInt32(resultado("SolicitudID"))
+                    lista.EstadoSeguro = Convert.ToString(resultado("Estado_Seguro"))
+                    lista.EstadoSiniestro = Convert.ToString(resultado("Estado_Siniestro"))
+                    lista.FechaSiniestro = Convert.ToDateTime(resultado("Fecha_Siniestro"))
+                    lista.FechaSolicitud = Convert.ToDateTime(resultado("FechaSolicitud"))
+                    lista.RutEmpleado = Convert.ToString(resultado("Rut"))
+                    lista.Estado = Convert.ToString(resultado("Estado"))
+
                 End While
                 conexion.Close()
             Catch ex As Exception

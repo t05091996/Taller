@@ -218,7 +218,7 @@ Partial Class FormUsuarios
         Me.IconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.IconButton1.UseVisualStyleBackColor = True
         '
-        'Form3
+        'FormUsuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -240,14 +240,14 @@ Partial Class FormUsuarios
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Cursor = System.Windows.Forms.Cursors.Hand
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "Form3"
+        Me.Name = "FormUsuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Uusarios"
         Me.ResumeLayout(False)

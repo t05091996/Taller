@@ -303,6 +303,8 @@ Partial Class FormClientes
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(6, 5, 6, 5)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormClientes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Registro de Clientes"

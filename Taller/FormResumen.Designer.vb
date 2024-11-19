@@ -31,23 +31,24 @@ Partial Class FormResumen
         Me.txtRepuesto = New System.Windows.Forms.TextBox()
         Me.txtRut = New System.Windows.Forms.TextBox()
         Me.dgvResumen = New System.Windows.Forms.DataGridView()
-        Me.txtFechaD = New System.Windows.Forms.DateTimePicker()
-        Me.txtFechaH = New System.Windows.Forms.DateTimePicker()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.btnBuscar = New FontAwesome.Sharp.IconButton()
         Me.NVenta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Rut = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Articulo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtFechaD = New System.Windows.Forms.DateTimePicker()
+        Me.txtFechaH = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.btnBuscar = New FontAwesome.Sharp.IconButton()
+        Me.btnVolver = New FontAwesome.Sharp.IconButton()
         CType(Me.dgvResumen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 30)
+        Me.Label1.Location = New System.Drawing.Point(15, 55)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(108, 21)
         Me.Label1.TabIndex = 1
@@ -56,7 +57,7 @@ Partial Class FormResumen
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(328, 30)
+        Me.Label3.Location = New System.Drawing.Point(331, 55)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(178, 21)
         Me.Label3.TabIndex = 3
@@ -65,7 +66,7 @@ Partial Class FormResumen
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(619, 30)
+        Me.Label4.Location = New System.Drawing.Point(622, 55)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(97, 21)
         Me.Label4.TabIndex = 4
@@ -73,14 +74,14 @@ Partial Class FormResumen
         '
         'txtRepuesto
         '
-        Me.txtRepuesto.Location = New System.Drawing.Point(332, 54)
+        Me.txtRepuesto.Location = New System.Drawing.Point(335, 79)
         Me.txtRepuesto.Name = "txtRepuesto"
         Me.txtRepuesto.Size = New System.Drawing.Size(275, 29)
         Me.txtRepuesto.TabIndex = 6
         '
         'txtRut
         '
-        Me.txtRut.Location = New System.Drawing.Point(623, 54)
+        Me.txtRut.Location = New System.Drawing.Point(626, 79)
         Me.txtRut.Name = "txtRut"
         Me.txtRut.Size = New System.Drawing.Size(155, 29)
         Me.txtRut.TabIndex = 8
@@ -100,7 +101,7 @@ Partial Class FormResumen
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvResumen.DefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvResumen.Location = New System.Drawing.Point(12, 119)
+        Me.dgvResumen.Location = New System.Drawing.Point(15, 144)
         Me.dgvResumen.Name = "dgvResumen"
         Me.dgvResumen.ReadOnly = True
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -109,48 +110,6 @@ Partial Class FormResumen
         Me.dgvResumen.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvResumen.Size = New System.Drawing.Size(972, 354)
         Me.dgvResumen.TabIndex = 11
-        '
-        'txtFechaD
-        '
-        Me.txtFechaD.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.txtFechaD.Location = New System.Drawing.Point(12, 54)
-        Me.txtFechaD.Name = "txtFechaD"
-        Me.txtFechaD.Size = New System.Drawing.Size(142, 29)
-        Me.txtFechaD.TabIndex = 12
-        Me.txtFechaD.Value = New Date(2024, 11, 5, 17, 20, 54, 0)
-        '
-        'txtFechaH
-        '
-        Me.txtFechaH.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.txtFechaH.Location = New System.Drawing.Point(171, 54)
-        Me.txtFechaH.Name = "txtFechaH"
-        Me.txtFechaH.Size = New System.Drawing.Size(142, 29)
-        Me.txtFechaH.TabIndex = 14
-        Me.txtFechaH.Value = New Date(2024, 11, 5, 17, 20, 54, 0)
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(171, 30)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(102, 21)
-        Me.Label2.TabIndex = 13
-        Me.Label2.Text = "Fecha hasta:"
-        '
-        'btnBuscar
-        '
-        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassArrowRight
-        Me.btnBuscar.IconColor = System.Drawing.Color.Black
-        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnBuscar.Location = New System.Drawing.Point(815, 30)
-        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(5)
-        Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Size = New System.Drawing.Size(131, 53)
-        Me.btnBuscar.TabIndex = 0
-        Me.btnBuscar.Text = "Buscar"
-        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnBuscar.UseVisualStyleBackColor = True
         '
         'NVenta
         '
@@ -193,11 +152,69 @@ Partial Class FormResumen
         Me.Total.Name = "Total"
         Me.Total.ReadOnly = True
         '
+        'txtFechaD
+        '
+        Me.txtFechaD.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.txtFechaD.Location = New System.Drawing.Point(15, 79)
+        Me.txtFechaD.Name = "txtFechaD"
+        Me.txtFechaD.Size = New System.Drawing.Size(142, 29)
+        Me.txtFechaD.TabIndex = 12
+        Me.txtFechaD.Value = New Date(2024, 11, 5, 17, 20, 54, 0)
+        '
+        'txtFechaH
+        '
+        Me.txtFechaH.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.txtFechaH.Location = New System.Drawing.Point(174, 79)
+        Me.txtFechaH.Name = "txtFechaH"
+        Me.txtFechaH.Size = New System.Drawing.Size(142, 29)
+        Me.txtFechaH.TabIndex = 14
+        Me.txtFechaH.Value = New Date(2024, 11, 5, 17, 20, 54, 0)
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(174, 55)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(102, 21)
+        Me.Label2.TabIndex = 13
+        Me.Label2.Text = "Fecha hasta:"
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassArrowRight
+        Me.btnBuscar.IconColor = System.Drawing.Color.Black
+        Me.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnBuscar.Location = New System.Drawing.Point(818, 55)
+        Me.btnBuscar.Margin = New System.Windows.Forms.Padding(5)
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(131, 53)
+        Me.btnBuscar.TabIndex = 0
+        Me.btnBuscar.Text = "Buscar"
+        Me.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnBuscar.UseVisualStyleBackColor = True
+        '
+        'btnVolver
+        '
+        Me.btnVolver.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft
+        Me.btnVolver.IconColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.btnVolver.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.btnVolver.IconSize = 45
+        Me.btnVolver.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnVolver.Location = New System.Drawing.Point(3, 1)
+        Me.btnVolver.Name = "btnVolver"
+        Me.btnVolver.Size = New System.Drawing.Size(108, 40)
+        Me.btnVolver.TabIndex = 24
+        Me.btnVolver.Text = "Volver"
+        Me.btnVolver.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnVolver.UseVisualStyleBackColor = True
+        '
         'FormResumen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(996, 485)
+        Me.ClientSize = New System.Drawing.Size(1013, 504)
+        Me.Controls.Add(Me.btnVolver)
         Me.Controls.Add(Me.txtFechaH)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtFechaD)
@@ -209,9 +226,11 @@ Partial Class FormResumen
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnBuscar)
         Me.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(5)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormResumen"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Resumen Venta"
@@ -237,4 +256,5 @@ Partial Class FormResumen
     Friend WithEvents Articulo As DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As DataGridViewTextBoxColumn
     Friend WithEvents Total As DataGridViewTextBoxColumn
+    Friend WithEvents btnVolver As FontAwesome.Sharp.IconButton
 End Class
